@@ -1,65 +1,81 @@
-/**
- * Copyright (c) MuleSoft, Inc. All rights reserved. http://www.mulesoft.com
- *
- * The software in this package is published under the terms of the CPAL v1.0
- * license, a copy of which has been included with this distribution in the
- * LICENSE.md file.
+/*
+ * Copyright 2010-2011 Nabeel Mukhtar 
+ * 
+ * Licensed under the Apache License, Version 2.0 (the "License"); 
+ * you may not use this file except in compliance with the License. 
+ * You may obtain a copy of the License at 
+ * 
+ *  http://www.apache.org/licenses/LICENSE-2.0
+ * 
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. 
+ * See the License for the specific language governing permissions and
+ * limitations under the License. 
+ * 
  */
-
 package com.google.code.linkedinapi.client.enumeration;
 
+import java.util.EnumSet;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Set;
 
 /**
  * @author Nabeel Mukhtar
+ *
  */
-public enum SearchSortOrder implements FieldEnum {
-
-
-    /**
-     * Number of connections per person, from largest to smallest.
-     */
-    CONNECTIONS("connections"),
-
+public enum SearchSortOrder implements FieldEnum, SearchEnum {
+	
+	
+	/**
+	 * Number of connections per person, from largest to smallest.
+	 */
+	CONNECTIONS("connections", EnumSet.of(SearchScope.PEOPLE)),
+	
     /**
      * Orders the returns by number of ensorsers each of the search returns has.
      */
-    RECOMMENDERS("recommenders"),
+    RECOMMENDERS("recommenders", EnumSet.of(SearchScope.PEOPLE)),
 
     /**
      * Orders the returns based on the ascending degree of separation within a member's network, with first degree connections first.
      */
-    DISTANCE("distance"),
+    DISTANCE("distance", EnumSet.of(SearchScope.PEOPLE)),
+    
+    RELATIONSHIP("relationship", EnumSet.of(SearchScope.COMPANIES)),
+    FOLLOWERS("followers", EnumSet.of(SearchScope.COMPANIES)),
+    COMPANY_SIZE("company-size", EnumSet.of(SearchScope.COMPANIES)),
 
     /**
      * Orders the returns based on relevance for the keywords provided.
      */
-    RELEVANCE("relevance");
-
+    RELEVANCE("relevance", EnumSet.of(SearchScope.PEOPLE, SearchScope.COMPANIES));
+    
     /**
      * Field Description.
      */
-    private static final Map<String, SearchSortOrder> stringToEnum = new HashMap<String, SearchSortOrder>();
+	private static final Map<String, SearchSortOrder> stringToEnum = new HashMap<String, SearchSortOrder>();
 
-    static { // Initialize map from constant name to enum constant
-        for (SearchSortOrder op : values()) {
-            stringToEnum.put(op.fieldName(), op);
-        }
-    }
-
-    /**
-     * Field description
-     */
+	static { // Initialize map from constant name to enum constant
+		for (SearchSortOrder op : values()) {
+			stringToEnum.put(op.fieldName(), op);
+		}
+	}
+	
+    /** Field description */
     private final String fieldName;
+    private final Set<SearchScope> scopes;
 
     /**
      * Constructs ...
      *
+     *
      * @param name
      */
-    SearchSortOrder(String name) {
+    SearchSortOrder(String name, Set<SearchScope> scopes) {
         this.fieldName = name;
+        this.scopes = scopes;
     }
 
     /**
@@ -72,6 +88,7 @@ public enum SearchSortOrder implements FieldEnum {
     /**
      * Method description
      *
+     *
      * @return
      */
     @Override
@@ -79,10 +96,15 @@ public enum SearchSortOrder implements FieldEnum {
         return fieldName();
     }
 
-    /**
-     * @return Returns SearchSortOrder for string, or null if string is invalid
-     */
-    public static SearchSortOrder fromString(String symbol) {
-        return stringToEnum.get(symbol);
+    public boolean hasScope(SearchScope scope) {
+    	return scopes.contains(scope);
     }
+    
+	/**
+	 *
+	 * @return Returns SearchSortOrder for string, or null if string is invalid
+	 */
+	public static SearchSortOrder fromString(String symbol) {
+		return stringToEnum.get(symbol);
+	}
 }

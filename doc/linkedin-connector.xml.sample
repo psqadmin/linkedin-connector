@@ -178,16 +178,12 @@
         <linkedin:unlike-post networkUpdateId="some-network-update-id"/>
 <!-- END_INCLUDE(linkedin:unlike-post) -->
 
-<!-- BEGIN_INCLUDE(linkedin:update-current-status) -->
-        <linkedin:update-current-status status="new-status" postToTwitter="true"/>
-<!-- END_INCLUDE(linkedin:update-current-status) -->
-
 <!-- BEGIN_INCLUDE(linkedin:send-message) -->
         <linkedin:send-message subject="some-subject" message="some-message">
-            <linkedin:recepient-ids>
-                <linkedin:recepient-id>recipientId1</linkedin:recepient-id>
-                <linkedin:recepient-id>recipientId2</linkedin:recepient-id>
-            </linkedin:recepient-ids>
+            <linkedin:recipient-ids>
+                <linkedin:recipient-id>recipientId1</linkedin:recipient-id>
+                <linkedin:recipient-id>recipientId2</linkedin:recipient-id>
+            </linkedin:recipient-ids>
         </linkedin:send-message>
 <!-- END_INCLUDE(linkedin:send-message) -->
 
@@ -202,14 +198,387 @@
 <!-- BEGIN_INCLUDE(linkedin:post-share) -->
         <linkedin:post-share commentText="some-comment"
                              title="some-title"
+                             description="some-description"
                              url="some-url"
                              imageUrl="some-image-url"
-                             visibility="ALL_MEMBERS"
+                             visibility="ANYONE"
                              postToTwitter="true"/>
 <!-- END_INCLUDE(linkedin:post-share) -->
 
 <!-- BEGIN_INCLUDE(linkedin:re-share) -->
         <linkedin:re-share shareId="some-share-id"
                            commentText="some-comment"
-                           visibility="ALL_MEMBERS"/>
+                           visibility="ANYONE"/>
 <!-- END_INCLUDE(linkedin:re-share) -->
+
+<!-- BEGIN_INCLUDE(linkedin:get-group-by-id) -->
+        <linkedin:get-group-by-id id="some-id">
+            <linkedin:group-fields>
+                <linkedin:group-field>DESCRIPTION</linkedin:group-field>
+                <linkedin:group-field>POSTS</linkedin:group-field>
+            </linkedin:group-fields>
+        </linkedin:get-group-by-id>
+<!-- END_INCLUDE(linkedin:get-group-by-id) -->
+
+<!-- BEGIN_INCLUDE(linkedin:get-group-memberships) -->
+        <linkedin:get-group-memberships groupId="some-id"
+                                       start="10"
+                                       count="20">
+            <linkedin:group-membership-fields>
+                <linkedin:group-membership-field>GROUP_NAME</linkedin:group-membership-field>
+                <linkedin:group-membership-field>CONTACT_EMAIL</linkedin:group-membership-field>
+            </linkedin:group-membership-fields>
+        </linkedin:get-group-memberships>
+<!-- END_INCLUDE(linkedin:get-group-memberships) -->
+
+
+<!-- BEGIN_INCLUDE(linkedin:update-group-membership) -->
+<!--Incorrect implementation in BaseLinkedInApiClient
+        <linkedin:update-group-membership groupId="some-id"
+        								contactEmail="some-contact-email"
+        								emailFrequencyCode="DAILY"
+        								showLogoInProfile="true"
+        								emailAnnouncements="true"
+        								allowMessagesFromMembers="true"
+        								emailForEveryPost="true"/>
+        								--> 
+<!-- END_INCLUDE(linkedin:update-group-membership) -->
+
+
+<!-- BEGIN_INCLUDE(linkedin:join-group) -->
+        <linkedin:join-group groupId="some-id"/>
+<!-- END_INCLUDE(linkedin:join-group) -->
+
+<!-- BEGIN_INCLUDE(linkedin:leave-group) -->
+        <linkedin:leave-group groupId="some-id"/>
+<!-- END_INCLUDE(linkedin:leave-group) -->
+
+<!-- BEGIN_INCLUDE(linkedin:get-posts-by-group) -->
+        <linkedin:get-posts-by-group groupId="some-id"
+                                      start="10"
+                                      count="20"
+                                      order="RECENCY"
+                                      category="DISCUSSION"
+                                      modifiedSince="2011-08-20T00:00:00-00:00">
+            <linkedin:post-fields>
+                <linkedin:post-field>TYPE</linkedin:post-field>
+                <linkedin:post-field>CATEGORY</linkedin:post-field>
+            </linkedin:post-fields>            
+        </linkedin:get-posts-by-group>
+<!-- END_INCLUDE(linkedin:get-posts-by-group) -->
+
+<!-- BEGIN_INCLUDE(linkedin:get-post) -->
+        <linkedin:get-post postId="some-id">
+            <linkedin:post-fields>
+                <linkedin:post-field>TYPE</linkedin:post-field>
+                <linkedin:post-field>CATEGORY</linkedin:post-field>
+            </linkedin:post-fields>
+        </linkedin:get-post>
+<!-- END_INCLUDE(linkedin:get-post) -->
+
+<!-- BEGIN_INCLUDE(linkedin:get-post-comments) -->
+        <linkedin:get-post-comments postId="some-id"
+        								start="10"
+                                      	count="20">
+            <linkedin:comment-fields>
+                <linkedin:comment-field>TEXT</linkedin:comment-field>
+                <linkedin:comment-field>CREATOR</linkedin:comment-field>
+            </linkedin:comment-fields>
+        </linkedin:get-post-comments>
+<!-- END_INCLUDE(linkedin:get-post-comments) -->
+
+<!-- BEGIN_INCLUDE(linkedin:create-post) -->
+        <linkedin:create-post groupId="some-id"
+        						title="some-title"
+        						summary="some-summary"/>
+<!-- END_INCLUDE(linkedin:create-post) -->
+
+<!-- BEGIN_INCLUDE(linkedin:like-group-post) -->
+        <linkedin:like-group-post postId="some-id"/>
+<!-- END_INCLUDE(linkedin:like-group-post) -->
+
+<!-- BEGIN_INCLUDE(linkedin:unlike-group-post) -->
+        <linkedin:unlike-group-post postId="some-id"/>
+<!-- END_INCLUDE(linkedin:unlike-group-post) -->
+
+<!-- BEGIN_INCLUDE(linkedin:follow-post) -->
+        <linkedin:follow-post postId="some-id"/>
+<!-- END_INCLUDE(linkedin:follow-post) -->
+
+<!-- BEGIN_INCLUDE(linkedin:unfollow-post) -->
+        <linkedin:unfollow-post postId="some-id"/>
+<!-- END_INCLUDE(linkedin:unfollow-post) -->
+
+<!-- BEGIN_INCLUDE(linkedin:flag-post) -->
+<!-- Incorrect implementation in BaseLinkedInApiClient
+        <linkedin:flag-post postId="some-id"
+        					code="DISCUSSION"/>
+        -->
+<!-- END_INCLUDE(linkedin:flag-post) -->
+
+<!-- BEGIN_INCLUDE(linkedin:delete-post) -->
+        <linkedin:delete-post postId="some-id"/>
+<!-- END_INCLUDE(linkedin:delete-post) -->
+
+<!-- BEGIN_INCLUDE(linkedin:get-post-comment) -->
+<!-- Incorrect implementation in BaseLinkedInApiClient
+        <linkedin:get-post-comment commentId="some-id">
+            <linkedin:comment-fields>
+                <linkedin:comment-field>TEXT</linkedin:comment-field>
+                <linkedin:comment-field>CREATOR</linkedin:comment-field>
+            </linkedin:comment-fields>
+        </linkedin:get-post-comment> 
+        -->
+<!-- END_INCLUDE(linkedin:get-post-comment) -->
+
+<!-- BEGIN_INCLUDE(linkedin:add-post-comment) -->
+        <linkedin:add-post-comment postId="some-id"
+        							comment="some-comment"/>
+<!-- END_INCLUDE(linkedin:add-post-comment) -->
+
+<!-- BEGIN_INCLUDE(linkedin:delete-post-comment) -->
+        <linkedin:delete-post-comment commentId="some-id"/>
+<!-- END_INCLUDE(linkedin:delete-post-comment) -->
+
+<!-- BEGIN_INCLUDE(linkedin:get-suggested-groups) -->
+        <linkedin:get-suggested-groups>
+            <linkedin:group-fields>
+                <linkedin:group-field>DESCRIPTION</linkedin:group-field>
+                <linkedin:group-field>POSTS</linkedin:group-field>
+            </linkedin:group-fields>
+        </linkedin:get-suggested-groups>
+<!-- END_INCLUDE(linkedin:get-suggested-groups) -->
+
+<!-- BEGIN_INCLUDE(linkedin:delete-group-suggestion) -->
+        <linkedin:delete-group-suggestion groupId="some-id"/>
+<!-- END_INCLUDE(linkedin:delete-group-suggestion) -->
+
+<!-- BEGIN_INCLUDE(linkedin:get-company-by-id) -->
+        <linkedin:get-company-by-id id="some-id">
+            <linkedin:company-fields>
+                <linkedin:company-field>NAME</linkedin:company-field>
+                <linkedin:company-field>UNIVERSAL_NAME</linkedin:company-field>
+            </linkedin:company-fields>
+        </linkedin:get-company-by-id>
+<!-- END_INCLUDE(linkedin:get-company-by-id) -->
+
+<!-- BEGIN_INCLUDE(linkedin:get-company-by-universal-name) -->
+        <linkedin:get-company-by-universal-name universalName="some-universal-name">
+            <linkedin:company-fields>
+                <linkedin:company-field>NAME</linkedin:company-field>
+                <linkedin:company-field>UNIVERSAL_NAME</linkedin:company-field>
+            </linkedin:company-fields>
+        </linkedin:get-company-by-universal-name>
+<!-- END_INCLUDE(linkedin:get-company-by-universal-name) -->
+
+<!-- BEGIN_INCLUDE(linkedin:get-companies-by-email-domain) -->
+        <linkedin:get-companies-by-email-domain emailDomain="some-email-domain">
+            <linkedin:company-fields>
+                <linkedin:company-field>NAME</linkedin:company-field>
+                <linkedin:company-field>UNIVERSAL_NAME</linkedin:company-field>
+            </linkedin:company-fields>
+        </linkedin:get-companies-by-email-domain>
+<!-- END_INCLUDE(linkedin:get-companies-by-email-domain) -->
+
+<!-- BEGIN_INCLUDE(linkedin:get-followed-companies) -->
+        <linkedin:get-followed-companies>
+            <linkedin:company-fields>
+                <linkedin:company-field>NAME</linkedin:company-field>
+                <linkedin:company-field>UNIVERSAL_NAME</linkedin:company-field>
+            </linkedin:company-fields>
+        </linkedin:get-followed-companies>
+<!-- END_INCLUDE(linkedin:get-followed-companies) -->
+
+<!-- BEGIN_INCLUDE(linkedin:follow-company) -->
+        <linkedin:follow-company id="some-id"/>
+<!-- END_INCLUDE(linkedin:follow-company) -->
+
+<!-- BEGIN_INCLUDE(linkedin:unfollow-company) -->
+        <linkedin:unfollow-company id="some-id"/>
+<!-- END_INCLUDE(linkedin:unfollow-company) -->
+
+<!-- BEGIN_INCLUDE(linkedin:get-suggested-companies) -->
+        <linkedin:get-suggested-companies>
+            <linkedin:company-fields>
+                <linkedin:company-field>NAME</linkedin:company-field>
+                <linkedin:company-field>UNIVERSAL_NAME</linkedin:company-field>
+            </linkedin:company-fields>
+        </linkedin:get-suggested-companies>
+<!-- END_INCLUDE(linkedin:get-suggested-companies) -->
+
+<!-- BEGIN_INCLUDE(linkedin:get-company-products) -->
+        <linkedin:get-company-products id="some-id"
+                                      start="10"
+                                      count="20">
+            <linkedin:product-fields>
+                <linkedin:product-field>NAME</linkedin:product-field>
+                <linkedin:product-field>TYPE</linkedin:product-field>
+            </linkedin:product-fields>
+        </linkedin:get-company-products>
+<!-- END_INCLUDE(linkedin:get-company-products) -->
+
+<!-- BEGIN_INCLUDE(linkedin:search-companies) -->
+        <linkedin:search-companies start="10"
+                                count="20"
+                                sortOrder="RECOMMENDERS">
+            <linkedin:search-parameters>
+                <linkedin:search-parameter key="CURRENT_COMPANY">MuleSoft</linkedin:search-parameter>
+                <linkedin:search-parameter key="TITLE">Engineer</linkedin:search-parameter>
+            </linkedin:search-parameters>
+            <linkedin:company-fields>
+                <linkedin:company-field>NAME</linkedin:company-field>
+                <linkedin:company-field>UNIVERSAL_NAME</linkedin:company-field>
+            </linkedin:company-fields>
+        </linkedin:search-companies>
+<!-- END_INCLUDE(linkedin:search-companies) -->
+
+<!-- BEGIN_INCLUDE(linkedin:search-companies-with-facets) -->
+        <linkedin:search-companies-with-facets start="10"
+                                            count="20"
+                                            sortOrder="RECOMMENDERS">
+            <linkedin:search-parameters>
+                <linkedin:search-parameter key="CURRENT_COMPANY">MuleSoft</linkedin:search-parameter>
+                <linkedin:search-parameter key="TITLE">Engineer</linkedin:search-parameter>
+            </linkedin:search-parameters>
+            <linkedin:company-fields>
+                <linkedin:company-field>NAME</linkedin:company-field>
+                <linkedin:company-field>UNIVERSAL_NAME</linkedin:company-field>
+            </linkedin:company-fields>
+            <linkedin:facets>
+                <linkedin:facet key="INDUSTRY">Software</linkedin:facet>
+                <linkedin:facet key="PAST_COMPANY">MuleSource</linkedin:facet>
+            </linkedin:facets>
+        </linkedin:search-companies-with-facets>
+<!-- END_INCLUDE(linkedin:search-companies-with-facets) -->
+
+<!-- BEGIN_INCLUDE(linkedin:search-companies-with-facet-fields) -->
+        <linkedin:search-companies-with-facet-fields start="10"
+                                                  count="20"
+                                                  sortOrder="RECOMMENDERS">
+            <linkedin:search-parameters>
+                <linkedin:search-parameter key="CURRENT_COMPANY">MuleSoft</linkedin:search-parameter>
+                <linkedin:search-parameter key="TITLE">Engineer</linkedin:search-parameter>
+            </linkedin:search-parameters>
+            <linkedin:company-fields>
+                <linkedin:company-field>NAME</linkedin:company-field>
+                <linkedin:company-field>UNIVERSAL_NAME</linkedin:company-field>
+            </linkedin:company-fields>
+            <linkedin:facet-fields>
+                <linkedin:facet-field>BUCKET_NAME</linkedin:facet-field>
+                <linkedin:facet-field>BUCKET_CODE</linkedin:facet-field>
+            </linkedin:facet-fields>
+            <linkedin:facets>
+                <linkedin:facet key="INDUSTRY">Software</linkedin:facet>
+                <linkedin:facet key="PAST_COMPANY">MuleSource</linkedin:facet>
+            </linkedin:facets>
+        </linkedin:search-companies-with-facet-fields>
+<!-- END_INCLUDE(linkedin:search-companies-with-facet-fields) -->
+
+<!-- BEGIN_INCLUDE(linkedin:get-job-by-id) -->
+        <linkedin:get-job-by-id id="some-id">
+            <linkedin:job-fields>
+                <linkedin:job-field>CUSTOMER_JOB_CODE</linkedin:job-field>
+                <linkedin:job-field>POSTING_TIMESTAMP</linkedin:job-field>
+            </linkedin:job-fields>
+        </linkedin:get-job-by-id>
+<!-- END_INCLUDE(linkedin:get-job-by-id) -->
+
+<!-- BEGIN_INCLUDE(linkedin:get-job-bookmarks) -->
+        <linkedin:get-job-bookmarks>
+            <linkedin:job-fields>
+                <linkedin:job-field>CUSTOMER_JOB_CODE</linkedin:job-field>
+                <linkedin:job-field>POSTING_TIMESTAMP</linkedin:job-field>
+            </linkedin:job-fields>
+        </linkedin:get-job-bookmarks>
+<!-- END_INCLUDE(linkedin:get-job-bookmarks) -->
+
+<!-- BEGIN_INCLUDE(linkedin:bookmark-job) -->
+<!-- Incorrect implementation in BaseLinkedInApiClient
+        <linkedin:bookmark-job jobId="some-id"/>
+        -->
+<!-- END_INCLUDE(linkedin:bookmark-job) -->
+
+<!-- BEGIN_INCLUDE(linkedin:unbookmark-job) -->
+        <linkedin:unbookmark-job jobId="some-id"/>
+<!-- END_INCLUDE(linkedin:unbookmark-job) -->
+
+<!-- BEGIN_INCLUDE(linkedin:get-job-suggestions) -->
+        <linkedin:get-job-suggestions>
+            <linkedin:job-fields>
+                <linkedin:job-field>CUSTOMER_JOB_CODE</linkedin:job-field>
+                <linkedin:job-field>POSTING_TIMESTAMP</linkedin:job-field>
+            </linkedin:job-fields>
+        </linkedin:get-job-suggestions>
+<!-- END_INCLUDE(linkedin:get-job-suggestions) -->
+
+<!-- BEGIN_INCLUDE(linkedin:post-job) -->
+        <linkedin:post-job job-ref="job"/>
+<!-- END_INCLUDE(linkedin:post-job) -->
+
+<!-- BEGIN_INCLUDE(linkedin:update-job) -->
+        <linkedin:update-job partnerJobId="some-partner-job-id"
+        					job-ref="job"/>
+<!-- END_INCLUDE(linkedin:update-job) -->
+
+<!-- BEGIN_INCLUDE(linkedin:renew-job) -->
+        <linkedin:renew-job partnerJobId="some-partner-job-id"
+        					contractId="some-contract-id"/>
+<!-- END_INCLUDE(linkedin:renew-job) -->
+
+<!-- BEGIN_INCLUDE(linkedin:close-job) -->
+        <linkedin:close-job partnerJobId="some-partner-job-id"/>
+<!-- END_INCLUDE(linkedin:close-job) -->
+
+<!-- BEGIN_INCLUDE(linkedin:search-jobs) -->
+        <linkedin:search-jobs start="10"
+                                count="20">
+            <linkedin:search-parameters>
+                <linkedin:search-parameter key="CURRENT_COMPANY">MuleSoft</linkedin:search-parameter>
+                <linkedin:search-parameter key="TITLE">Engineer</linkedin:search-parameter>
+            </linkedin:search-parameters>
+            <linkedin:job-fields>
+                <linkedin:job-field>CUSTOMER_JOB_CODE</linkedin:job-field>
+                <linkedin:job-field>POSTING_TIMESTAMP</linkedin:job-field>
+            </linkedin:job-fields>
+        </linkedin:search-jobs>
+<!-- END_INCLUDE(linkedin:search-jobs) -->
+
+<!-- BEGIN_INCLUDE(linkedin:search-jobs-with-facets) -->
+        <linkedin:search-jobs-with-facets start="10"
+                                            count="20">
+            <linkedin:search-parameters>
+                <linkedin:search-parameter key="CURRENT_COMPANY">MuleSoft</linkedin:search-parameter>
+                <linkedin:search-parameter key="TITLE">Engineer</linkedin:search-parameter>
+            </linkedin:search-parameters>
+            <linkedin:job-fields>
+                <linkedin:job-field>CUSTOMER_JOB_CODE</linkedin:job-field>
+                <linkedin:job-field>POSTING_TIMESTAMP</linkedin:job-field>
+            </linkedin:job-fields>
+            <linkedin:facets>
+                <linkedin:facet key="INDUSTRY">Software</linkedin:facet>
+                <linkedin:facet key="PAST_COMPANY">MuleSource</linkedin:facet>
+            </linkedin:facets>
+        </linkedin:search-jobs-with-facets>
+<!-- END_INCLUDE(linkedin:search-jobs-with-facets) -->
+
+<!-- BEGIN_INCLUDE(linkedin:search-jobs-with-facet-fields) -->
+        <linkedin:search-jobs-with-facet-fields start="10"
+                                                  count="20">
+            <linkedin:search-parameters>
+                <linkedin:search-parameter key="CURRENT_COMPANY">MuleSoft</linkedin:search-parameter>
+                <linkedin:search-parameter key="TITLE">Engineer</linkedin:search-parameter>
+            </linkedin:search-parameters>
+            <linkedin:job-fields>
+                <linkedin:job-field>CUSTOMER_JOB_CODE</linkedin:job-field>
+                <linkedin:job-field>POSTING_TIMESTAMP</linkedin:job-field>
+            </linkedin:job-fields>
+            <linkedin:facet-fields>
+                <linkedin:facet-field>BUCKET_NAME</linkedin:facet-field>
+                <linkedin:facet-field>BUCKET_CODE</linkedin:facet-field>
+            </linkedin:facet-fields>
+            <linkedin:facets>
+                <linkedin:facet key="INDUSTRY">Software</linkedin:facet>
+                <linkedin:facet key="PAST_COMPANY">MuleSource</linkedin:facet>
+            </linkedin:facets>
+        </linkedin:search-jobs-with-facet-fields>
+<!-- END_INCLUDE(linkedin:search-jobs-with-facet-fields) -->

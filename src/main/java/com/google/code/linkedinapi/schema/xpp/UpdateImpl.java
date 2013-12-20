@@ -1,33 +1,44 @@
-/**
- * Copyright (c) MuleSoft, Inc. All rights reserved. http://www.mulesoft.com
- *
- * The software in this package is published under the terms of the CPAL v1.0
- * license, a copy of which has been included with this distribution in the
- * LICENSE.md file.
+/*
+ * Copyright 2010-2011 Nabeel Mukhtar 
+ * 
+ * Licensed under the Apache License, Version 2.0 (the "License"); 
+ * you may not use this file except in compliance with the License. 
+ * You may obtain a copy of the License at 
+ * 
+ *  http://www.apache.org/licenses/LICENSE-2.0
+ * 
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. 
+ * See the License for the specific language governing permissions and
+ * limitations under the License. 
+ * 
  */
 
 package com.google.code.linkedinapi.schema.xpp;
+
+import java.io.IOException;
+
+import org.xmlpull.v1.XmlPullParser;
+import org.xmlpull.v1.XmlPullParserException;
+import org.xmlpull.v1.XmlSerializer;
 
 import com.google.code.linkedinapi.schema.Likes;
 import com.google.code.linkedinapi.schema.NetworkUpdateReturnType;
 import com.google.code.linkedinapi.schema.Update;
 import com.google.code.linkedinapi.schema.UpdateComments;
 import com.google.code.linkedinapi.schema.UpdateContent;
-import org.xmlpull.v1.XmlPullParser;
-import org.xmlpull.v1.XmlPullParserException;
-import org.xmlpull.v1.XmlSerializer;
-
-import java.io.IOException;
 
 public class UpdateImpl
-        extends BaseSchemaEntity
-        implements Update {
+	extends BaseSchemaEntity
+    implements Update
+{
 
     /**
-     *
-     */
-    private static final long serialVersionUID = 298287987891947325L;
-    protected Long timestamp;
+	 * 
+	 */
+	private static final long serialVersionUID = 298287987891947325L;
+	protected Long timestamp;
     protected String updateKey;
     protected NetworkUpdateReturnType updateType;
     protected UpdateContentImpl updateContent;
@@ -101,7 +112,7 @@ public class UpdateImpl
     public void setNumLikes(Long value) {
         this.numLikes = value;
     }
-
+    
     public UpdateComments getUpdateComments() {
         return updateComments;
     }
@@ -109,7 +120,7 @@ public class UpdateImpl
     public void setUpdateComments(UpdateComments value) {
         this.updateComments = ((UpdateCommentsImpl) value);
     }
-
+    
     public Likes getLikes() {
         return likes;
     }
@@ -118,67 +129,67 @@ public class UpdateImpl
         this.likes = ((LikesImpl) value);
     }
 
-    @Override
-    public void init(XmlPullParser parser) throws IOException, XmlPullParserException {
+	@Override
+	public void init(XmlPullParser parser) throws IOException, XmlPullParserException {
         parser.require(XmlPullParser.START_TAG, null, null);
 
         while (parser.nextTag() == XmlPullParser.START_TAG) {
-            String name = parser.getName();
-
-            if (name.equals("timestamp")) {
-                setTimestamp(XppUtils.getElementValueAsLongFromNode(parser));
-            } else if (name.equals("update-key")) {
-                setUpdateKey(XppUtils.getElementValueFromNode(parser));
-            } else if (name.equals("update-type")) {
-                setUpdateType(NetworkUpdateReturnType.fromValue(XppUtils.getElementValueFromNode(parser)));
-            } else if (name.equals("is-commentable")) {
-                setIsCommentable(Boolean.parseBoolean(XppUtils.getElementValueFromNode(parser)));
-            } else if (name.equals("is-likable")) {
-                setIsLikable(Boolean.parseBoolean(XppUtils.getElementValueFromNode(parser)));
-            } else if (name.equals("is-liked")) {
-                setIsLiked(Boolean.parseBoolean(XppUtils.getElementValueFromNode(parser)));
-            } else if (name.equals("num-likes")) {
-                setNumLikes(XppUtils.getElementValueAsLongFromNode(parser));
-            } else if (name.equals("update-content")) {
-                UpdateContentImpl contentImpl = new UpdateContentImpl();
-                contentImpl.init(parser);
-                setUpdateContent(contentImpl);
-            } else if (name.equals("update-comments")) {
-                UpdateCommentsImpl commentImpl = new UpdateCommentsImpl();
-                commentImpl.init(parser);
-                setUpdateComments(commentImpl);
+        	String name = parser.getName();
+        	
+        	if (name.equals("timestamp")) {
+        		setTimestamp(XppUtils.getElementValueAsLongFromNode(parser));
+        	} else if (name.equals("update-key")) {
+        		setUpdateKey(XppUtils.getElementValueFromNode(parser));
+        	} else if (name.equals("update-type")) {
+        		setUpdateType(NetworkUpdateReturnType.fromValue(XppUtils.getElementValueFromNode(parser)));
+        	} else if (name.equals("is-commentable")) {
+        		setIsCommentable(Boolean.parseBoolean(XppUtils.getElementValueFromNode(parser)));
+        	} else if (name.equals("is-likable")) {
+        		setIsLikable(Boolean.parseBoolean(XppUtils.getElementValueFromNode(parser)));
+        	} else if (name.equals("is-liked")) {
+        		setIsLiked(Boolean.parseBoolean(XppUtils.getElementValueFromNode(parser)));
+        	} else if (name.equals("num-likes")) {
+        		setNumLikes(XppUtils.getElementValueAsLongFromNode(parser));
+        	} else if (name.equals("update-content")) {
+    			UpdateContentImpl contentImpl = new UpdateContentImpl();
+    			contentImpl.init(parser);
+    			setUpdateContent(contentImpl);
+        	} else if (name.equals("update-comments")) {
+    			UpdateCommentsImpl commentImpl = new UpdateCommentsImpl();
+    			commentImpl.init(parser);
+    			setUpdateComments(commentImpl);
             } else if (name.equals("likes")) {
-                LikesImpl likesImpl = new LikesImpl();
-                likesImpl.init(parser);
-                setLikes(likesImpl);
+    			LikesImpl likesImpl = new LikesImpl();
+    			likesImpl.init(parser);
+    			setLikes(likesImpl);
             } else {
                 // Consume something we don't understand.
-                LOG.warning("Found tag that we don't recognize: " + name);
-                XppUtils.skipSubTree(parser);
+            	LOG.warning("Found tag that we don't recognize: " + name);
+            	XppUtils.skipSubTree(parser);
             }
         }
-    }
+	}
 
-    @Override
-    public void toXml(XmlSerializer serializer) throws IOException {
-        XmlSerializer element = serializer.startTag(null, "update");
-        XppUtils.setElementValueToNode(element, "timestamp", getTimestamp());
-        XppUtils.setElementValueToNode(element, "update-key", getUpdateKey());
-        XppUtils.setElementValueToNode(element, "update-type", getUpdateType().value());
-        XppUtils.setElementValueToNode(element, "is-commentable", String.valueOf(isIsCommentable()));
-        XppUtils.setElementValueToNode(element, "is-likable", String.valueOf(isIsLikable()));
-        XppUtils.setElementValueToNode(element, "is-liked", String.valueOf(isIsLiked()));
-        XppUtils.setElementValueToNode(element, "num-likes", getNumLikes());
-
-        if (getUpdateContent() != null) {
-            ((UpdateContentImpl) getUpdateContent()).toXml(serializer);
-        }
-        if (getUpdateComments() != null) {
-            ((UpdateCommentsImpl) getUpdateComments()).toXml(serializer);
-        }
-        if (getLikes() != null) {
-            ((LikesImpl) getLikes()).toXml(serializer);
-        }
-        serializer.endTag(null, "update");
-    }
+	@Override
+	public void toXml(XmlSerializer serializer) throws IOException {
+		XmlSerializer element = serializer.startTag(null, "update");
+		XppUtils.setElementValueToNode(element, "timestamp", getTimestamp());
+		XppUtils.setElementValueToNode(element, "update-key", getUpdateKey());
+		XppUtils.setElementValueToNode(element, "update-type", getUpdateType().value());
+		XppUtils.setElementValueToNode(element, "is-commentable", String.valueOf(isIsCommentable()));
+		XppUtils.setElementValueToNode(element, "is-likable", String.valueOf(isIsLikable()));
+		XppUtils.setElementValueToNode(element, "is-liked", String.valueOf(isIsLiked()));
+		XppUtils.setElementValueToNode(element, "num-likes", getNumLikes());
+		
+		if (getUpdateContent() != null) {
+			((UpdateContentImpl) getUpdateContent()).toXml(serializer);
+		}
+		if (getUpdateComments() != null) {
+			((UpdateCommentsImpl) getUpdateComments()).toXml(serializer);
+		}
+		if (getLikes() != null) {
+			((LikesImpl) getLikes()).toXml(serializer);
+		}
+		serializer.endTag(null, "update");
+	}
 }

@@ -1,35 +1,45 @@
-/**
- * Copyright (c) MuleSoft, Inc. All rights reserved. http://www.mulesoft.com
- *
- * The software in this package is published under the terms of the CPAL v1.0
- * license, a copy of which has been included with this distribution in the
- * LICENSE.md file.
+/*
+ * Copyright 2010-2011 Nabeel Mukhtar 
+ * 
+ * Licensed under the Apache License, Version 2.0 (the "License"); 
+ * you may not use this file except in compliance with the License. 
+ * You may obtain a copy of the License at 
+ * 
+ *  http://www.apache.org/licenses/LICENSE-2.0
+ * 
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. 
+ * See the License for the specific language governing permissions and
+ * limitations under the License. 
+ * 
  */
 
 package com.google.code.linkedinapi.schema.xpp;
 
-import com.google.code.linkedinapi.schema.Activity;
-import com.google.code.linkedinapi.schema.NetworkUpdateContentType;
+import java.io.IOException;
+
 import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserException;
 import org.xmlpull.v1.XmlSerializer;
 
-import java.io.IOException;
-
+import com.google.code.linkedinapi.schema.Activity;
+import com.google.code.linkedinapi.schema.NetworkUpdateContentType;
 public class ActivityImpl
-        extends BaseSchemaEntity
-        implements Activity {
+    extends BaseSchemaEntity
+    implements Activity
+{
 
     /**
-     *
-     */
-    private static final long serialVersionUID = -2002088204138306557L;
-    protected Long timestamp;
+	 * 
+	 */
+	private static final long serialVersionUID = -2002088204138306557L;
+	protected Long timestamp;
     protected NetworkUpdateContentType contentType;
     protected String body;
     protected String locale;
     protected String appId;
-
+    
     public Long getTimestamp() {
         return timestamp;
     }
@@ -61,7 +71,7 @@ public class ActivityImpl
     public void setLocale(String value) {
         this.locale = value;
     }
-
+    
     public String getAppId() {
         return appId;
     }
@@ -69,41 +79,41 @@ public class ActivityImpl
     public void setAppId(String value) {
         this.appId = value;
     }
-
-    @Override
-    public void init(XmlPullParser parser) throws IOException, XmlPullParserException {
+    
+	@Override
+	public void init(XmlPullParser parser) throws IOException, XmlPullParserException {
         parser.require(XmlPullParser.START_TAG, null, null);
-        setLocale(XppUtils.getAttributeValueFromNode(parser, "locale"));
+		setLocale(XppUtils.getAttributeValueFromNode(parser, "locale"));
 
         while (parser.nextTag() == XmlPullParser.START_TAG) {
-            String name = parser.getName();
-            if (name.equals("timestamp")) {
-                setTimestamp(XppUtils.getElementValueAsLongFromNode(parser));
-            } else if (name.equals("content-type")) {
-                String contentTypeStr = XppUtils.getElementValueFromNode(parser);
-                if (contentTypeStr != null) {
-                    setContentType(NetworkUpdateContentType.fromValue(contentTypeStr));
-                }
-            } else if (name.equals("body")) {
-                setBody(XppUtils.getElementValueFromNode(parser));
-            } else if (name.equals("app-id")) {
-                setAppId(XppUtils.getElementValueFromNode(parser));
+        	String name = parser.getName();
+        	if (name.equals("timestamp")) {
+        		setTimestamp(XppUtils.getElementValueAsLongFromNode(parser));
+        	} else if (name.equals("content-type")) {
+        		String contentTypeStr = XppUtils.getElementValueFromNode(parser);
+        		if (contentTypeStr != null) {
+        			setContentType(NetworkUpdateContentType.fromValue(contentTypeStr));
+        		}
+        	} else if (name.equals("body")) {
+        		setBody(XppUtils.getElementValueFromNode(parser));
+        	} else if (name.equals("app-id")) {
+        		setAppId(XppUtils.getElementValueFromNode(parser));
             } else {
                 // Consume something we don't understand.
-                LOG.warning("Found tag that we don't recognize: " + name);
-                XppUtils.skipSubTree(parser);
+            	LOG.warning("Found tag that we don't recognize: " + name);
+            	XppUtils.skipSubTree(parser);
             }
         }
-    }
+	}
 
-    @Override
-    public void toXml(XmlSerializer serializer) throws IOException {
-        XmlSerializer element = serializer.startTag(null, "activity");
-        XppUtils.setAttributeValueToNode(element, "locale", getLocale());
-        XppUtils.setElementValueToNode(element, "timestamp", getTimestamp());
-        XppUtils.setElementValueToNode(element, "content-type", getContentType().value());
-        XppUtils.setElementValueToNode(element, "body", getBody());
-        XppUtils.setElementValueToNode(element, "app-id", getAppId());
-        element.endTag(null, "activity");
-    }
+	@Override
+	public void toXml(XmlSerializer serializer) throws IOException {
+		XmlSerializer element = serializer.startTag(null, "activity");
+		XppUtils.setAttributeValueToNode(element, "locale", getLocale());
+		XppUtils.setElementValueToNode(element, "timestamp", getTimestamp());
+		XppUtils.setElementValueToNode(element, "content-type", getContentType().value());
+		XppUtils.setElementValueToNode(element, "body", getBody());
+		XppUtils.setElementValueToNode(element, "app-id", getAppId());
+		element.endTag(null, "activity");
+	}
 }

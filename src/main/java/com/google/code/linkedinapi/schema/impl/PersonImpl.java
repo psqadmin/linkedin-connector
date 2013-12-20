@@ -1,13 +1,31 @@
-/**
- * Copyright (c) MuleSoft, Inc. All rights reserved. http://www.mulesoft.com
- *
- * The software in this package is published under the terms of the CPAL v1.0
- * license, a copy of which has been included with this distribution in the
- * LICENSE.md file.
+/*
+ * Copyright 2010-2011 Nabeel Mukhtar 
+ * 
+ * Licensed under the Apache License, Version 2.0 (the "License"); 
+ * you may not use this file except in compliance with the License. 
+ * You may obtain a copy of the License at 
+ * 
+ *  http://www.apache.org/licenses/LICENSE-2.0
+ * 
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. 
+ * See the License for the specific language governing permissions and
+ * limitations under the License. 
+ * 
  */
 
 package com.google.code.linkedinapi.schema.impl;
 
+import java.io.Serializable;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlAttribute;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlType;
+import javax.xml.bind.annotation.adapters.CollapsedStringAdapter;
+import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 import com.google.code.linkedinapi.schema.Adapter1;
 import com.google.code.linkedinapi.schema.ApiStandardProfileRequest;
 import com.google.code.linkedinapi.schema.Certifications;
@@ -35,65 +53,56 @@ import com.google.code.linkedinapi.schema.ThreeCurrentPositions;
 import com.google.code.linkedinapi.schema.ThreePastPositions;
 import com.google.code.linkedinapi.schema.TwitterAccounts;
 
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlAttribute;
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlType;
-import javax.xml.bind.annotation.adapters.CollapsedStringAdapter;
-import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
-import java.io.Serializable;
-
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = {
-        "id",
-        "firstName",
-        "lastName",
-        "headline",
-        "location",
-        "industry",
-        "connections",
-        "currentStatus",
-        "currentShare",
-        "distance",
-        "currentStatusTimestamp",
-        "numRecommenders",
-        "numConnections",
-        "numConnectionsCapped",
-        "relationToViewer",
-        "summary",
-        "publicProfileUrl",
-        "interests",
-        "associations",
-        "honors",
-        "specialties",
-        "certifications",
-        "patents",
-        "publications",
-        "skills",
-        "languages",
-        "positions",
-        "threeCurrentPositions",
-        "threePastPositions",
-        "educations",
-        "memberUrlResources",
-        "apiStandardProfileRequest",
-        "siteStandardProfileRequest",
-        "pictureUrl",
-        "recommendationsGiven",
-        "recommendationsReceived",
-        "memberGroups",
-        "personActivities",
-        "imAccounts",
-        "twitterAccounts",
-        "dateOfBirth",
-        "mainAddress",
-        "phoneNumbers"
+    "id",
+    "firstName",
+    "lastName",
+    "headline",
+    "location",
+    "industry",
+    "connections",
+    "currentStatus",
+    "currentShare",
+    "distance",
+    "currentStatusTimestamp",
+    "numRecommenders",
+    "numConnections",
+    "numConnectionsCapped",
+    "relationToViewer",
+    "summary",
+    "publicProfileUrl",
+    "interests",
+    "associations",
+    "honors",
+    "specialties",
+    "certifications",
+    "patents",
+    "publications",
+    "skills",
+    "languages",
+    "positions",
+    "threeCurrentPositions",
+    "threePastPositions",
+    "educations",
+    "memberUrlResources",
+    "apiStandardProfileRequest",
+    "siteStandardProfileRequest",
+    "pictureUrl",
+    "recommendationsGiven",
+    "recommendationsReceived",
+    "memberGroups",
+    "personActivities",
+    "imAccounts",
+    "twitterAccounts",
+    "dateOfBirth",
+    "mainAddress",
+    "phoneNumbers"
 })
 @XmlRootElement(name = "person")
 public class PersonImpl
-        implements Serializable, Person {
+    implements Serializable, Person
+{
 
     private final static long serialVersionUID = 2461660169443089969L;
     @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
@@ -113,16 +122,16 @@ public class PersonImpl
     @XmlElement(name = "current-share", type = CurrentShareImpl.class)
     protected CurrentShareImpl currentShare;
     @XmlElement(type = String.class)
-    @XmlJavaTypeAdapter(Adapter1.class)
+    @XmlJavaTypeAdapter(Adapter1 .class)
     protected Long distance;
     @XmlElement(name = "current-status-timestamp", type = String.class)
-    @XmlJavaTypeAdapter(Adapter1.class)
+    @XmlJavaTypeAdapter(Adapter1 .class)
     protected Long currentStatusTimestamp;
     @XmlElement(name = "num-recommenders", type = String.class)
-    @XmlJavaTypeAdapter(Adapter1.class)
+    @XmlJavaTypeAdapter(Adapter1 .class)
     protected Long numRecommenders;
     @XmlElement(name = "num-connections", type = String.class)
-    @XmlJavaTypeAdapter(Adapter1.class)
+    @XmlJavaTypeAdapter(Adapter1 .class)
     protected Long numConnections;
     @XmlElement(name = "num-connections-capped")
     protected Boolean numConnectionsCapped;

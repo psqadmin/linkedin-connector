@@ -1,0 +1,1367 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns="http://www.mulesoft.org/schema/mule/core" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:spring="http://www.springframework.org/schema/beans"
+	xmlns:linkedin="http://www.mulesoft.org/schema/mule/linkedin"
+	xsi:schemaLocation="
+        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+        http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+        http://www.mulesoft.org/schema/mule/linkedin http://www.mulesoft.org/schema/mule/linkedin/1.0/mule-linkedin.xsd">
+
+	<linkedin:config
+		apiKey="qvGcsquonvOyticiGEP7ys8M_s_UZvmvF4RhxkF1AKWE3WGMnQy_Vd2Iqv7dwGZm"
+		apiSecret="cv0MO5Tp7WgsbSBT3AF44ToP45VGV5OgtOBqRa6zPqZ3MYomK38Ma5QLsxdZ4DCG">
+		<linkedin:oauth-callback-config domain=""
+			localPort="" remotePort="" />
+	</linkedin:config>
+
+	<flow name="GetProfileForCurrentUserC1">
+		<linkedin:get-profile-for-current-user />
+	</flow>
+
+	<flow name="GetProfileForCurrentUserC2">
+		<linkedin:get-profile-for-current-user>
+			<linkedin:profile-fields>
+				<linkedin:profile-field>LAST_NAME</linkedin:profile-field>
+				<linkedin:profile-field>HONORS</linkedin:profile-field>
+			</linkedin:profile-fields>
+		</linkedin:get-profile-for-current-user>
+	</flow>
+
+	<flow name="GetProfileByIdC1">
+		<linkedin:get-profile-by-id id="some-id" />
+	</flow>
+
+	<flow name="GetProfileByIdC2">
+		<linkedin:get-profile-by-id id="some-id">
+			<linkedin:profile-fields>
+				<linkedin:profile-field>LAST_NAME</linkedin:profile-field>
+				<linkedin:profile-field>HONORS</linkedin:profile-field>
+			</linkedin:profile-fields>
+		</linkedin:get-profile-by-id>
+	</flow>
+
+	<flow name="GetProfileByUrlC1">
+		<linkedin:get-profile-by-url url="some-url"
+			profileType="STANDARD" />
+	</flow>
+
+	<flow name="GetNetworkUpdatesC1">
+		<linkedin:get-network-updates />
+	</flow>
+
+	<flow name="GetNetworkUpdatesC2">
+		<linkedin:get-network-updates>
+			<linkedin:update-types>
+				<linkedin:update-type>PROFILE_UPDATE</linkedin:update-type>
+				<linkedin:update-type>RECOMMENDATION_UPDATE</linkedin:update-type>
+			</linkedin:update-types>
+		</linkedin:get-network-updates>
+	</flow>
+
+	<flow name="GetNetworkUpdatesC3">
+		<linkedin:get-network-updates startDate="2011-08-10T00:00:00-00:00"
+			endDate="2011-08-10T00:00:00-00:00" />
+	</flow>
+
+	<flow name="GetNetworkUpdatesC4">
+		<linkedin:get-network-updates start="10"
+			count="20" />
+	</flow>
+	<flow name="GetNetworkUpdatesC5">
+		<linkedin:get-network-updates startDate="2011-08-10T00:00:00-00:00"
+			endDate="2011-08-10T00:00:00-00:00">
+			<linkedin:update-types>
+				<linkedin:update-type>PROFILE_UPDATE</linkedin:update-type>
+				<linkedin:update-type>RECOMMENDATION_UPDATE</linkedin:update-type>
+			</linkedin:update-types>
+		</linkedin:get-network-updates>
+	</flow>
+	<flow name="GetNetworkUpdatesC6">
+		<linkedin:get-network-updates start="10"
+			count="20">
+			<linkedin:update-types>
+				<linkedin:update-type>PROFILE_UPDATE</linkedin:update-type>
+				<linkedin:update-type>RECOMMENDATION_UPDATE</linkedin:update-type>
+			</linkedin:update-types>
+		</linkedin:get-network-updates>
+	</flow>
+	<flow name="GetNetworkUpdatesC7">
+		<linkedin:get-network-updates start="10"
+			count="20" startDate="2011-08-10T00:00:00-00:00" endDate="2011-08-10T00:00:00-00:00">
+			<linkedin:update-types>
+				<linkedin:update-type>PROFILE_UPDATE</linkedin:update-type>
+				<linkedin:update-type>RECOMMENDATION_UPDATE</linkedin:update-type>
+			</linkedin:update-types>
+		</linkedin:get-network-updates>
+	</flow>
+	<flow name="GetNetworkUpdatesC8">
+		<linkedin:get-network-updates start="10"
+			count="20" showHiddenMembers="true" startDate="2011-08-10T00:00:00-00:00"
+			endDate="2011-08-10T00:00:00-00:00">
+			<linkedin:update-types>
+				<linkedin:update-type>PROFILE_UPDATE</linkedin:update-type>
+				<linkedin:update-type>RECOMMENDATION_UPDATE</linkedin:update-type>
+			</linkedin:update-types>
+		</linkedin:get-network-updates>
+	</flow>
+
+	<flow name="GetUserUpdatesC1">
+		<linkedin:get-user-updates />
+	</flow>
+
+	<flow name="GetUserUpdatesC2">
+		<linkedin:get-user-updates>
+			<linkedin:update-types>
+				<linkedin:update-type>PROFILE_UPDATE</linkedin:update-type>
+				<linkedin:update-type>RECOMMENDATION_UPDATE</linkedin:update-type>
+			</linkedin:update-types>
+		</linkedin:get-user-updates>
+	</flow>
+
+	<flow name="GetUserUpdatesC3">
+		<linkedin:get-user-updates start="10" count="20" />
+	</flow>
+
+	<flow name="GetUserUpdatesC4">
+		<linkedin:get-user-updates startDate="2011-08-10T00:00:00-00:00"
+			endDate="2011-08-10T00:00:00-00:00" />
+	</flow>
+
+	<flow name="GetUserUpdatesC5">
+		<linkedin:get-user-updates startDate="2011-08-10T00:00:00-00:00"
+			endDate="2011-08-10T00:00:00-00:00">
+			<linkedin:update-types>
+				<linkedin:update-type>PROFILE_UPDATE</linkedin:update-type>
+				<linkedin:update-type>RECOMMENDATION_UPDATE</linkedin:update-type>
+			</linkedin:update-types>
+		</linkedin:get-user-updates>
+	</flow>
+
+	<flow name="GetUserUpdatesC6">
+		<linkedin:get-user-updates start="10" count="20">
+			<linkedin:update-types>
+				<linkedin:update-type>PROFILE_UPDATE</linkedin:update-type>
+				<linkedin:update-type>RECOMMENDATION_UPDATE</linkedin:update-type>
+			</linkedin:update-types>
+		</linkedin:get-user-updates>
+	</flow>
+
+	<flow name="GetUserUpdatesC7">
+		<linkedin:get-user-updates start="10" count="20"
+			startDate="2011-08-10T00:00:00-00:00" endDate="2011-08-10T00:00:00-00:00">
+			<linkedin:update-types>
+				<linkedin:update-type>PROFILE_UPDATE</linkedin:update-type>
+				<linkedin:update-type>RECOMMENDATION_UPDATE</linkedin:update-type>
+			</linkedin:update-types>
+		</linkedin:get-user-updates>
+	</flow>
+
+	<flow name="GetUserUpdatesByIdC1">
+		<linkedin:get-user-updates-by-id id="some-id" />
+	</flow>
+
+	<flow name="GetUserUpdatesByIdC2">
+		<linkedin:get-user-updates-by-id id="some-id">
+			<linkedin:update-types>
+				<linkedin:update-type>PROFILE_UPDATE</linkedin:update-type>
+				<linkedin:update-type>RECOMMENDATION_UPDATE</linkedin:update-type>
+			</linkedin:update-types>
+		</linkedin:get-user-updates-by-id>
+	</flow>
+
+	<flow name="GetUserUpdatesByIdC3">
+		<linkedin:get-user-updates-by-id id="some-id"
+			startDate="2011-08-10T00:00:00-00:00" endDate="2011-08-10T00:00:00-00:00" />
+	</flow>
+
+	<flow name="GetUserUpdatesByIdC4">
+		<linkedin:get-user-updates-by-id id="some-id"
+			start="10" count="20" />
+	</flow>
+
+	<flow name="GetUserUpdatesByIdC5">
+		<linkedin:get-user-updates-by-id id="some-id"
+			startDate="2011-08-10T00:00:00-00:00" endDate="2011-08-10T00:00:00-00:00">
+			<linkedin:update-types>
+				<linkedin:update-type>PROFILE_UPDATE</linkedin:update-type>
+				<linkedin:update-type>RECOMMENDATION_UPDATE</linkedin:update-type>
+			</linkedin:update-types>
+		</linkedin:get-user-updates-by-id>
+	</flow>
+
+	<flow name="GetUserUpdatesByIdC6">
+		<linkedin:get-user-updates-by-id id="some-id"
+			start="10" count="20">
+			<linkedin:update-types>
+				<linkedin:update-type>PROFILE_UPDATE</linkedin:update-type>
+				<linkedin:update-type>RECOMMENDATION_UPDATE</linkedin:update-type>
+			</linkedin:update-types>
+		</linkedin:get-user-updates-by-id>
+	</flow>
+
+	<flow name="GetUserUpdatesByIdC7">
+		<linkedin:get-user-updates-by-id id="some-id"
+			start="10" count="20" startDate="2011-08-10T00:00:00-00:00" endDate="2011-08-10T00:00:00-00:00">
+			<linkedin:update-types>
+				<linkedin:update-type>PROFILE_UPDATE</linkedin:update-type>
+				<linkedin:update-type>RECOMMENDATION_UPDATE</linkedin:update-type>
+			</linkedin:update-types>
+		</linkedin:get-user-updates-by-id>
+	</flow>
+
+	<flow name="GetNetworkUpdateCommentsC1">
+		<linkedin:get-network-update-comments
+			networkUpdateId="some-network-update-id" />
+	</flow>
+
+	<flow name="GetNetworkUpdateLikesC1">
+		<linkedin:get-network-update-likes
+			networkUpdateId="some-network-update-id" />
+	</flow>
+
+	<flow name="GetConnectionsForCurrentUserC1">
+		<linkedin:get-connections-for-current-user />
+	</flow>
+
+	<flow name="GetConnectionsForCurrentUserC2">
+		<linkedin:get-connections-for-current-user>
+			<linkedin:profile-fields>
+				<linkedin:profile-field>LAST_NAME</linkedin:profile-field>
+				<linkedin:profile-field>HONORS</linkedin:profile-field>
+			</linkedin:profile-fields>
+		</linkedin:get-connections-for-current-user>
+	</flow>
+
+	<flow name="GetConnectionsForCurrentUserC3">
+		<linkedin:get-connections-for-current-user
+			modificationDate="2011-08-20T00:00:00-00:00" modificationType="NEW" />
+	</flow>
+
+	<flow name="GetConnectionsForCurrentUserC4">
+		<linkedin:get-connections-for-current-user
+			start="10" count="20" />
+	</flow>
+
+	<flow name="GetConnectionsForCurrentUserC5">
+		<linkedin:get-connections-for-current-user
+			start="10" count="20" modificationDate="2011-08-20T00:00:00-00:00"
+			modificationType="NEW" />
+	</flow>
+
+	<flow name="GetConnectionsForCurrentUserC6">
+		<linkedin:get-connections-for-current-user
+			start="10" count="20">
+			<linkedin:profile-fields>
+				<linkedin:profile-field>LAST_NAME</linkedin:profile-field>
+				<linkedin:profile-field>HONORS</linkedin:profile-field>
+			</linkedin:profile-fields>
+		</linkedin:get-connections-for-current-user>
+	</flow>
+
+	<flow name="GetConnectionsForCurrentUserC7">
+		<linkedin:get-connections-for-current-user
+			modificationDate="2011-08-20T00:00:00-00:00" modificationType="NEW">
+			<linkedin:profile-fields>
+				<linkedin:profile-field>LAST_NAME</linkedin:profile-field>
+				<linkedin:profile-field>HONORS</linkedin:profile-field>
+			</linkedin:profile-fields>
+		</linkedin:get-connections-for-current-user>
+	</flow>
+
+	<flow name="GetConnectionsForCurrentUserC8">
+		<linkedin:get-connections-for-current-user
+			start="10" count="20" modificationDate="2011-08-20T00:00:00-00:00"
+			modificationType="NEW">
+			<linkedin:profile-fields>
+				<linkedin:profile-field>LAST_NAME</linkedin:profile-field>
+				<linkedin:profile-field>HONORS</linkedin:profile-field>
+			</linkedin:profile-fields>
+		</linkedin:get-connections-for-current-user>
+	</flow>
+
+	<flow name="GetConnectionsByIdC1">
+		<linkedin:get-connections-by-id id="some-id" />
+	</flow>
+
+	<flow name="GetConnectionsByIdC2">
+		<linkedin:get-connections-by-id id="some-id">
+			<linkedin:profile-fields>
+				<linkedin:profile-field>LAST_NAME</linkedin:profile-field>
+				<linkedin:profile-field>HONORS</linkedin:profile-field>
+			</linkedin:profile-fields>
+		</linkedin:get-connections-by-id>
+	</flow>
+
+	<flow name="GetConnectionsByIdC3">
+		<linkedin:get-connections-by-id id="some-id"
+			start="10" count="20" />
+	</flow>
+
+	<flow name="GetConnectionsByIdC4">
+		<linkedin:get-connections-by-id id="some-id"
+			modificationDate="2011-08-20T00:00:00-00:00" modificationType="NEW" />
+	</flow>
+
+	<flow name="GetConnectionsByIdC5">
+		<linkedin:get-connections-by-id id="some-id"
+			start="10" count="20" modificationDate="2011-08-20T00:00:00-00:00"
+			modificationType="NEW" />
+	</flow>
+
+	<flow name="GetConnectionsByIdC6">
+		<linkedin:get-connections-by-id id="some-id"
+			start="10" count="20">
+			<linkedin:profile-fields>
+				<linkedin:profile-field>LAST_NAME</linkedin:profile-field>
+				<linkedin:profile-field>HONORS</linkedin:profile-field>
+			</linkedin:profile-fields>
+		</linkedin:get-connections-by-id>
+	</flow>
+
+	<flow name="GetConnectionsByIdC7">
+		<linkedin:get-connections-by-id id="some-id"
+			modificationDate="2011-08-20T00:00:00-00:00" modificationType="NEW">
+			<linkedin:profile-fields>
+				<linkedin:profile-field>LAST_NAME</linkedin:profile-field>
+				<linkedin:profile-field>HONORS</linkedin:profile-field>
+			</linkedin:profile-fields>
+		</linkedin:get-connections-by-id>
+	</flow>
+
+	<flow name="GetConnectionsByIdC8">
+		<linkedin:get-connections-by-id id="some-id"
+			start="10" count="20" modificationDate="2011-08-20T00:00:00-00:00"
+			modificationType="NEW">
+			<linkedin:profile-fields>
+				<linkedin:profile-field>LAST_NAME</linkedin:profile-field>
+				<linkedin:profile-field>HONORS</linkedin:profile-field>
+			</linkedin:profile-fields>
+		</linkedin:get-connections-by-id>
+	</flow>
+
+	<flow name="GetConnectionsByUrlC1">
+		<linkedin:get-connections-by-url url="some-url" />
+	</flow>
+
+	<flow name="GetConnectionsByUrlC2">
+		<linkedin:get-connections-by-url url="some-url">
+			<linkedin:profile-fields>
+				<linkedin:profile-field>LAST_NAME</linkedin:profile-field>
+				<linkedin:profile-field>HONORS</linkedin:profile-field>
+			</linkedin:profile-fields>
+		</linkedin:get-connections-by-url>
+	</flow>
+
+	<flow name="GetConnectionsByUrlC3">
+		<linkedin:get-connections-by-url url="some-url"
+			start="10" count="20" />
+	</flow>
+
+	<flow name="GetConnectionsByUrlC4">
+		<linkedin:get-connections-by-url url="some-url"
+			modificationDate="2011-08-20T00:00:00-00:00" modificationType="NEW" />
+	</flow>
+
+	<flow name="GetConnectionsByUrlC5">
+		<linkedin:get-connections-by-url url="some-url"
+			start="10" count="20" modificationDate="2011-08-20T00:00:00-00:00"
+			modificationType="NEW" />
+	</flow>
+
+	<flow name="GetConnectionsByUrlC6">
+		<linkedin:get-connections-by-url url="some-url"
+			start="10" count="20">
+			<linkedin:profile-fields>
+				<linkedin:profile-field>LAST_NAME</linkedin:profile-field>
+				<linkedin:profile-field>HONORS</linkedin:profile-field>
+			</linkedin:profile-fields>
+		</linkedin:get-connections-by-url>
+	</flow>
+
+	<flow name="GetConnectionsByUrlC7">
+		<linkedin:get-connections-by-url url="some-url"
+			modificationDate="2011-08-20T00:00:00-00:00" modificationType="NEW">
+			<linkedin:profile-fields>
+				<linkedin:profile-field>LAST_NAME</linkedin:profile-field>
+				<linkedin:profile-field>HONORS</linkedin:profile-field>
+			</linkedin:profile-fields>
+		</linkedin:get-connections-by-url>
+	</flow>
+
+	<flow name="GetConnectionsByUrlC8">
+		<linkedin:get-connections-by-url url="some-url"
+			start="10" count="20" modificationDate="2011-08-20T00:00:00-00:00"
+			modificationType="NEW">
+			<linkedin:profile-fields>
+				<linkedin:profile-field>LAST_NAME</linkedin:profile-field>
+				<linkedin:profile-field>HONORS</linkedin:profile-field>
+			</linkedin:profile-fields>
+		</linkedin:get-connections-by-url>
+	</flow>
+
+	<flow name="SearchPeopleC1">
+		<linkedin:search-people />
+	</flow>
+
+	<flow name="SearchPeopleC2">
+		<linkedin:search-people sortOrder="RECOMMENDERS">
+			<linkedin:search-parameters>
+				<linkedin:search-parameter key="CURRENT_COMPANY">MuleSoft</linkedin:search-parameter>
+				<linkedin:search-parameter key="TITLE">Engineer</linkedin:search-parameter>
+			</linkedin:search-parameters>
+		</linkedin:search-people>
+	</flow>
+
+	<flow name="SearchPeopleC3">
+		<linkedin:search-people start="10" count="20" sortOrder="RECOMMENDERS">
+			<linkedin:search-parameters>
+				<linkedin:search-parameter key="CURRENT_COMPANY">MuleSoft</linkedin:search-parameter>
+				<linkedin:search-parameter key="TITLE">Engineer</linkedin:search-parameter>
+			</linkedin:search-parameters>
+		</linkedin:search-people>
+	</flow>
+
+	<flow name="SearchPeopleC4">
+		<linkedin:search-people sortOrder="RECOMMENDERS">
+			<linkedin:search-parameters>
+				<linkedin:search-parameter key="CURRENT_COMPANY">MuleSoft</linkedin:search-parameter>
+				<linkedin:search-parameter key="TITLE">Engineer</linkedin:search-parameter>
+			</linkedin:search-parameters>
+			<linkedin:profile-fields>
+				<linkedin:profile-field>LAST_NAME</linkedin:profile-field>
+				<linkedin:profile-field>HONORS</linkedin:profile-field>
+			</linkedin:profile-fields>
+		</linkedin:search-people>
+	</flow>
+
+	<flow name="SearchPeopleC5">
+		<linkedin:search-people start="10" count="20" sortOrder="RECOMMENDERS">
+			<linkedin:search-parameters>
+				<linkedin:search-parameter key="CURRENT_COMPANY">MuleSoft</linkedin:search-parameter>
+				<linkedin:search-parameter key="TITLE">Engineer</linkedin:search-parameter>
+			</linkedin:search-parameters>
+			<linkedin:profile-fields>
+				<linkedin:profile-field>LAST_NAME</linkedin:profile-field>
+				<linkedin:profile-field>HONORS</linkedin:profile-field>
+			</linkedin:profile-fields>
+		</linkedin:search-people>
+	</flow>
+
+	<flow name="SearchPeopleWithFacetsC1">
+		<linkedin:search-people-with-facets	sortOrder="RECOMMENDERS">
+			<linkedin:search-parameters>
+				<linkedin:search-parameter key="CURRENT_COMPANY">MuleSoft</linkedin:search-parameter>
+				<linkedin:search-parameter key="TITLE">Engineer</linkedin:search-parameter>
+			</linkedin:search-parameters>
+			<linkedin:facets>
+				<linkedin:facet key="INDUSTRY">Software</linkedin:facet>
+				<linkedin:facet key="PAST_COMPANY">MuleSource</linkedin:facet>
+			</linkedin:facets>
+		</linkedin:search-people-with-facets>
+	</flow>
+
+	<flow name="SearchPeopleWithFacetsC2">
+		<linkedin:search-people-with-facets	start="10" count="20" sortOrder="RECOMMENDERS">
+			<linkedin:search-parameters>
+				<linkedin:search-parameter key="CURRENT_COMPANY">MuleSoft</linkedin:search-parameter>
+				<linkedin:search-parameter key="TITLE">Engineer</linkedin:search-parameter>
+			</linkedin:search-parameters>
+			<linkedin:facets>
+				<linkedin:facet key="INDUSTRY">Software</linkedin:facet>
+				<linkedin:facet key="PAST_COMPANY">MuleSource</linkedin:facet>
+			</linkedin:facets>
+		</linkedin:search-people-with-facets>
+	</flow>
+
+	<flow name="SearchPeopleWithFacetsC3">
+		<linkedin:search-people-with-facets	sortOrder="RECOMMENDERS">
+			<linkedin:search-parameters>
+				<linkedin:search-parameter key="CURRENT_COMPANY">MuleSoft</linkedin:search-parameter>
+				<linkedin:search-parameter key="TITLE">Engineer</linkedin:search-parameter>
+			</linkedin:search-parameters>
+			<linkedin:profile-fields>
+				<linkedin:profile-field>LAST_NAME</linkedin:profile-field>
+				<linkedin:profile-field>HONORS</linkedin:profile-field>
+			</linkedin:profile-fields>
+			<linkedin:facets>
+				<linkedin:facet key="INDUSTRY">Software</linkedin:facet>
+				<linkedin:facet key="PAST_COMPANY">MuleSource</linkedin:facet>
+			</linkedin:facets>
+		</linkedin:search-people-with-facets>
+	</flow>
+
+	<flow name="SearchPeopleWithFacetsC4">
+		<linkedin:search-people-with-facets start="10" count="20" sortOrder="RECOMMENDERS">
+			<linkedin:search-parameters>
+				<linkedin:search-parameter key="CURRENT_COMPANY">MuleSoft</linkedin:search-parameter>
+				<linkedin:search-parameter key="TITLE">Engineer</linkedin:search-parameter>
+			</linkedin:search-parameters>
+			<linkedin:profile-fields>
+				<linkedin:profile-field>LAST_NAME</linkedin:profile-field>
+				<linkedin:profile-field>HONORS</linkedin:profile-field>
+			</linkedin:profile-fields>
+			<linkedin:facets>
+				<linkedin:facet key="INDUSTRY">Software</linkedin:facet>
+				<linkedin:facet key="PAST_COMPANY">MuleSource</linkedin:facet>
+			</linkedin:facets>
+		</linkedin:search-people-with-facets>
+	</flow>
+
+	<flow name="SearchPeopleWithFacetFieldsC1">
+		<linkedin:search-people-with-facet-fields sortOrder="RECOMMENDERS">
+			<linkedin:search-parameters>
+				<linkedin:search-parameter key="CURRENT_COMPANY">MuleSoft</linkedin:search-parameter>
+				<linkedin:search-parameter key="TITLE">Engineer</linkedin:search-parameter>
+			</linkedin:search-parameters>
+			<linkedin:profile-fields>
+				<linkedin:profile-field>LAST_NAME</linkedin:profile-field>
+				<linkedin:profile-field>HONORS</linkedin:profile-field>
+			</linkedin:profile-fields>
+			<linkedin:facet-fields>
+				<linkedin:facet-field>BUCKET_NAME</linkedin:facet-field>
+				<linkedin:facet-field>BUCKET_CODE</linkedin:facet-field>
+			</linkedin:facet-fields>
+		</linkedin:search-people-with-facet-fields>
+	</flow>
+
+	<flow name="SearchPeopleWithFacetFieldsC2">
+		<linkedin:search-people-with-facet-fields sortOrder="RECOMMENDERS">
+			<linkedin:search-parameters>
+				<linkedin:search-parameter key="CURRENT_COMPANY">MuleSoft</linkedin:search-parameter>
+				<linkedin:search-parameter key="TITLE">Engineer</linkedin:search-parameter>
+			</linkedin:search-parameters>
+			<linkedin:profile-fields>
+				<linkedin:profile-field>LAST_NAME</linkedin:profile-field>
+				<linkedin:profile-field>HONORS</linkedin:profile-field>
+			</linkedin:profile-fields>
+			<linkedin:facet-fields>
+				<linkedin:facet-field>BUCKET_NAME</linkedin:facet-field>
+				<linkedin:facet-field>BUCKET_CODE</linkedin:facet-field>
+			</linkedin:facet-fields>
+			<linkedin:facets>
+				<linkedin:facet key="INDUSTRY">Software</linkedin:facet>
+				<linkedin:facet key="PAST_COMPANY">MuleSource</linkedin:facet>
+			</linkedin:facets>
+		</linkedin:search-people-with-facet-fields>
+	</flow>
+	<flow name="SearchPeopleWithFacetFieldsC3">
+		<linkedin:search-people-with-facet-fields start="10" count="20" sortOrder="RECOMMENDERS">
+			<linkedin:search-parameters>
+				<linkedin:search-parameter key="CURRENT_COMPANY">MuleSoft</linkedin:search-parameter>
+				<linkedin:search-parameter key="TITLE">Engineer</linkedin:search-parameter>
+			</linkedin:search-parameters>
+			<linkedin:profile-fields>
+				<linkedin:profile-field>LAST_NAME</linkedin:profile-field>
+				<linkedin:profile-field>HONORS</linkedin:profile-field>
+			</linkedin:profile-fields>
+			<linkedin:facet-fields>
+				<linkedin:facet-field>BUCKET_NAME</linkedin:facet-field>
+				<linkedin:facet-field>BUCKET_CODE</linkedin:facet-field>
+			</linkedin:facet-fields>
+		</linkedin:search-people-with-facet-fields>
+	</flow>
+	<flow name="SearchPeopleWithFacetFieldsC4">
+		<linkedin:search-people-with-facet-fields start="10" count="20" sortOrder="RECOMMENDERS">
+			<linkedin:search-parameters>
+				<linkedin:search-parameter key="CURRENT_COMPANY">MuleSoft</linkedin:search-parameter>
+				<linkedin:search-parameter key="TITLE">Engineer</linkedin:search-parameter>
+			</linkedin:search-parameters>
+			<linkedin:profile-fields>
+				<linkedin:profile-field>LAST_NAME</linkedin:profile-field>
+				<linkedin:profile-field>HONORS</linkedin:profile-field>
+			</linkedin:profile-fields>
+			<linkedin:facet-fields>
+				<linkedin:facet-field>BUCKET_NAME</linkedin:facet-field>
+				<linkedin:facet-field>BUCKET_CODE</linkedin:facet-field>
+			</linkedin:facet-fields>
+			<linkedin:facets>
+				<linkedin:facet key="INDUSTRY">Software</linkedin:facet>
+				<linkedin:facet key="PAST_COMPANY">MuleSource</linkedin:facet>
+			</linkedin:facets>
+		</linkedin:search-people-with-facet-fields>
+	</flow>
+
+
+	<flow name="PostNetworkUpdateC1">
+		<linkedin:post-network-update updateText="some-update-text" />
+	</flow>
+
+	<flow name="PostCommentC1">
+		<linkedin:post-comment networkUpdateId="some-network-update-id"
+			commentText="some-comment-text" />
+	</flow>
+
+	<flow name="LikePostC1">
+		<linkedin:like-post networkUpdateId="some-network-update-id" />
+	</flow>
+
+	<flow name="UnlikePostC1">
+		<linkedin:unlike-post networkUpdateId="some-network-update-id" />
+	</flow>
+
+	<flow name="SendMessageC1">
+		<linkedin:send-message subject="some-subject"
+			message="some-message">
+			<linkedin:recipient-ids>
+				<linkedin:recipient-id>recipientId1</linkedin:recipient-id>
+				<linkedin:recipient-id>recipientId2</linkedin:recipient-id>
+			</linkedin:recipient-ids>
+		</linkedin:send-message>
+	</flow>
+
+	<flow name="SendInviteByEmailC1">
+		<linkedin:send-invite-by-email email="some-email"
+			firstName="some-name" lastName="some-last-name" subject="some-subject"
+			message="some-message" />
+	</flow>
+
+	<flow name="PostShareC1">
+		<linkedin:post-share commentText="some-comment"
+			title="some-title" description="some-description" url="some-url"
+			imageUrl="some-image-url" visibility="ANYONE" postToTwitter="true" />
+	</flow>
+
+	<flow name="ReShareC1">
+		<linkedin:re-share shareId="some-share-id"
+			commentText="some-comment" visibility="ANYONE" />
+	</flow>
+
+	<flow name="GetGroupByIdC1">
+		<linkedin:get-group-by-id id="some-id" />
+	</flow>
+
+	<flow name="GetGroupByIdC2">
+		<linkedin:get-group-by-id id="some-id">
+			<linkedin:group-fields>
+				<linkedin:group-field>DESCRIPTION</linkedin:group-field>
+				<linkedin:group-field>POSTS</linkedin:group-field>
+			</linkedin:group-fields>
+		</linkedin:get-group-by-id>
+	</flow>
+
+	<flow name="GetGroupMembershipsC1">
+		<linkedin:get-group-memberships />
+	</flow>
+
+	<flow name="GetGroupMembershipsC2">
+		<linkedin:get-group-memberships>
+			<linkedin:group-membership-fields>
+				<linkedin:group-membership-field>GROUP_NAME</linkedin:group-membership-field>
+				<linkedin:group-membership-field>CONTACT_EMAIL</linkedin:group-membership-field>
+			</linkedin:group-membership-fields>
+		</linkedin:get-group-memberships>
+	</flow>
+
+	<flow name="GetGroupMembershipsC3">
+		<linkedin:get-group-memberships
+			groupId="some-id" />
+	</flow>
+
+	<flow name="GetGroupMembershipsC4">
+		<linkedin:get-group-memberships
+			groupId="some-id">
+			<linkedin:group-membership-fields>
+				<linkedin:group-membership-field>GROUP_NAME</linkedin:group-membership-field>
+				<linkedin:group-membership-field>CONTACT_EMAIL</linkedin:group-membership-field>
+			</linkedin:group-membership-fields>
+		</linkedin:get-group-memberships>
+	</flow>
+
+	<flow name="GetGroupMembershipsC5">
+		<linkedin:get-group-memberships start="10"
+			count="20">
+			<linkedin:group-membership-fields>
+				<linkedin:group-membership-field>GROUP_NAME</linkedin:group-membership-field>
+				<linkedin:group-membership-field>CONTACT_EMAIL</linkedin:group-membership-field>
+			</linkedin:group-membership-fields>
+		</linkedin:get-group-memberships>
+	</flow>
+
+	<flow name="GetGroupMembershipsC6">
+		<linkedin:get-group-memberships
+			groupId="some-id" start="10" count="20">
+			<linkedin:group-membership-fields>
+				<linkedin:group-membership-field>GROUP_NAME</linkedin:group-membership-field>
+				<linkedin:group-membership-field>CONTACT_EMAIL</linkedin:group-membership-field>
+			</linkedin:group-membership-fields>
+		</linkedin:get-group-memberships>
+	</flow>
+
+	<flow name="JoinGroupC1">
+		<linkedin:join-group groupId="some-id" />
+	</flow>
+
+	<flow name="LeaveGroupC1">
+		<linkedin:leave-group groupId="some-id" />
+	</flow>
+
+	<flow name="GetPostsByGroupC1">
+		<linkedin:get-posts-by-group groupId="some-id"
+			start="10" count="20" order="RECENCY" />
+	</flow>
+
+	<flow name="GetPostsByGroupC2">
+		<linkedin:get-posts-by-group groupId="some-id"
+			start="10" count="20" order="RECENCY" modifiedSince="2011-08-20T00:00:00-00:00" />
+	</flow>
+
+	<flow name="GetPostsByGroupC3">
+		<linkedin:get-posts-by-group groupId="some-id"
+			start="10" count="20" order="RECENCY" category="DISCUSSION" />
+	</flow>
+	<flow name="GetPostsByGroupC4">
+		<linkedin:get-posts-by-group groupId="some-id"
+			start="10" count="20" order="RECENCY">
+			<linkedin:post-fields>
+				<linkedin:post-field>TYPE</linkedin:post-field>
+				<linkedin:post-field>CATEGORY</linkedin:post-field>
+			</linkedin:post-fields>
+		</linkedin:get-posts-by-group>
+	</flow>
+	<flow name="GetPostsByGroupC5">
+		<linkedin:get-posts-by-group groupId="some-id"
+			start="10" count="20" order="RECENCY" category="DISCUSSION"
+			modifiedSince="2011-08-20T00:00:00-00:00" />
+	</flow>
+	<flow name="GetPostsByGroupC6">
+		<linkedin:get-posts-by-group groupId="some-id"
+			start="10" count="20" order="RECENCY" modifiedSince="2011-08-20T00:00:00-00:00">
+			<linkedin:post-fields>
+				<linkedin:post-field>TYPE</linkedin:post-field>
+				<linkedin:post-field>CATEGORY</linkedin:post-field>
+			</linkedin:post-fields>
+		</linkedin:get-posts-by-group>
+	</flow>
+
+	<flow name="GetPostsByGroupC7">
+		<linkedin:get-posts-by-group groupId="some-id"
+			start="10" count="20" order="RECENCY" category="DISCUSSION">
+			<linkedin:post-fields>
+				<linkedin:post-field>TYPE</linkedin:post-field>
+				<linkedin:post-field>CATEGORY</linkedin:post-field>
+			</linkedin:post-fields>
+		</linkedin:get-posts-by-group>
+	</flow>
+
+	<flow name="GetPostsByGroupC8">
+		<linkedin:get-posts-by-group groupId="some-id"
+			start="10" count="20" order="RECENCY" category="DISCUSSION"
+			modifiedSince="2011-08-20T00:00:00-00:00">
+			<linkedin:post-fields>
+				<linkedin:post-field>TYPE</linkedin:post-field>
+				<linkedin:post-field>CATEGORY</linkedin:post-field>
+			</linkedin:post-fields>
+		</linkedin:get-posts-by-group>
+	</flow>
+
+	<flow name="GetPostC1">
+		<linkedin:get-post postId="some-id" />
+	</flow>
+
+	<flow name="GetPostC2">
+		<linkedin:get-post postId="some-id">
+			<linkedin:post-fields>
+				<linkedin:post-field>TYPE</linkedin:post-field>
+				<linkedin:post-field>CATEGORY</linkedin:post-field>
+			</linkedin:post-fields>
+		</linkedin:get-post>
+	</flow>
+
+	<flow name="GetPostCommentsC1">
+		<linkedin:get-post-comments postId="some-id" />
+	</flow>
+
+	<flow name="GetPostCommentsC2">
+		<linkedin:get-post-comments postId="some-id">
+			<linkedin:comment-fields>
+				<linkedin:comment-field>TEXT</linkedin:comment-field>
+				<linkedin:comment-field>CREATOR</linkedin:comment-field>
+			</linkedin:comment-fields>
+		</linkedin:get-post-comments>
+	</flow>
+
+	<flow name="GetPostCommentsC3">
+		<linkedin:get-post-comments postId="some-id"
+			start="10" count="20" />
+	</flow>
+
+	<flow name="GetPostCommentsC4">
+		<linkedin:get-post-comments postId="some-id"
+			start="10" count="20">
+			<linkedin:comment-fields>
+				<linkedin:comment-field>TEXT</linkedin:comment-field>
+				<linkedin:comment-field>CREATOR</linkedin:comment-field>
+			</linkedin:comment-fields>
+		</linkedin:get-post-comments>
+	</flow>
+
+	<flow name="CreatePostC1">
+		<linkedin:create-post groupId="some-id" title="some-title"
+			summary="some-summary" />
+	</flow>
+
+	<flow name="LikeGroupPostC1">
+		<linkedin:like-group-post postId="some-id" />
+	</flow>
+
+	<flow name="UnlikeGroupPostC1">
+		<linkedin:unlike-group-post postId="some-id" />
+	</flow>
+
+	<flow name="FollowPostC1">
+		<linkedin:follow-post postId="some-id" />
+	</flow>
+
+	<flow name="UnfollowPostC1">
+		<linkedin:unfollow-post postId="some-id" />
+	</flow>
+
+	<flow name="DeletePostC1">
+		<linkedin:delete-post postId="some-id" />
+	</flow>
+
+	<flow name="AddPostCommentC1">
+		<linkedin:add-post-comment postId="some-id"
+			comment="some-comment" />
+	</flow>
+
+	<flow name="DeletePostCommentC1">
+		<linkedin:delete-post-comment commentId="some-id" />
+	</flow>
+
+	<flow name="GetSuggestedGroupsC1">
+		<linkedin:get-suggested-groups />
+	</flow>
+
+	<flow name="GetSuggestedGroupsC2">
+		<linkedin:get-suggested-groups>
+			<linkedin:group-fields>
+				<linkedin:group-field>DESCRIPTION</linkedin:group-field>
+				<linkedin:group-field>POSTS</linkedin:group-field>
+			</linkedin:group-fields>
+		</linkedin:get-suggested-groups>
+	</flow>
+
+	<flow name="DeleteGroupSuggestionC1">
+		<linkedin:delete-group-suggestion
+			groupId="some-id" />
+	</flow>
+
+	<flow name="GetCompanyByIdC1">
+		<linkedin:get-company-by-id id="some-id" />
+	</flow>
+
+	<flow name="GetCompanyByIdC2">
+		<linkedin:get-company-by-id id="some-id">
+			<linkedin:company-fields>
+				<linkedin:company-field>NAME</linkedin:company-field>
+				<linkedin:company-field>UNIVERSAL_NAME</linkedin:company-field>
+			</linkedin:company-fields>
+		</linkedin:get-company-by-id>
+	</flow>
+
+	<flow name="GetCompanyByUniversalNameC1">
+		<linkedin:get-company-by-universal-name
+			universalName="some-universal-name" />
+	</flow>
+
+	<flow name="GetCompanyByUniversalNameC2">
+		<linkedin:get-company-by-universal-name
+			universalName="some-universal-name">
+			<linkedin:company-fields>
+				<linkedin:company-field>NAME</linkedin:company-field>
+				<linkedin:company-field>UNIVERSAL_NAME</linkedin:company-field>
+			</linkedin:company-fields>
+		</linkedin:get-company-by-universal-name>
+	</flow>
+
+	<flow name="GetCompaniesByEmailDomainC1">
+		<linkedin:get-companies-by-email-domain
+			emailDomain="some-email-domain" />
+	</flow>
+
+	<flow name="GetCompaniesByEmailDomainC2">
+		<linkedin:get-companies-by-email-domain
+			emailDomain="some-email-domain">
+			<linkedin:company-fields>
+				<linkedin:company-field>NAME</linkedin:company-field>
+				<linkedin:company-field>UNIVERSAL_NAME</linkedin:company-field>
+			</linkedin:company-fields>
+		</linkedin:get-companies-by-email-domain>
+	</flow>
+
+	<flow name="GetFollowedCompaniesC1">
+		<linkedin:get-followed-companies />
+	</flow>
+
+	<flow name="GetFollowedCompaniesC2">
+		<linkedin:get-followed-companies>
+			<linkedin:company-fields>
+				<linkedin:company-field>NAME</linkedin:company-field>
+				<linkedin:company-field>UNIVERSAL_NAME</linkedin:company-field>
+			</linkedin:company-fields>
+		</linkedin:get-followed-companies>
+	</flow>
+
+
+	<flow name="FollowCompanyC1">
+		<linkedin:follow-company id="some-id" />
+	</flow>
+
+	<flow name="UnfollowCompanyC1">
+		<linkedin:unfollow-company id="some-id" />
+	</flow>
+
+	<flow name="GetSuggestedCompaniesC1">
+		<linkedin:get-suggested-companies />
+	</flow>
+
+	<flow name="GetSuggestedCompaniesC2">
+		<linkedin:get-suggested-companies>
+			<linkedin:company-fields>
+				<linkedin:company-field>NAME</linkedin:company-field>
+				<linkedin:company-field>UNIVERSAL_NAME</linkedin:company-field>
+			</linkedin:company-fields>
+		</linkedin:get-suggested-companies>
+	</flow>
+
+
+	<flow name="GetCompanyProductsC1">
+		<linkedin:get-company-products id="some-id" />
+	</flow>
+
+	<flow name="GetCompanyProductsC2">
+		<linkedin:get-company-products id="some-id">
+			<linkedin:product-fields>
+				<linkedin:product-field>NAME</linkedin:product-field>
+				<linkedin:product-field>TYPE</linkedin:product-field>
+			</linkedin:product-fields>
+		</linkedin:get-company-products>
+	</flow>
+
+	<flow name="GetCompanyProductsC3">
+		<linkedin:get-company-products id="some-id"
+			start="10" count="20" />
+	</flow>
+
+	<flow name="GetCompanyProductsC4">
+		<linkedin:get-company-products id="some-id"
+			start="10" count="20">
+			<linkedin:product-fields>
+				<linkedin:product-field>NAME</linkedin:product-field>
+				<linkedin:product-field>TYPE</linkedin:product-field>
+			</linkedin:product-fields>
+		</linkedin:get-company-products>
+	</flow>
+
+	<flow name="SearchCompaniesC1">
+		<linkedin:search-companies />
+	</flow>
+
+	<flow name="SearchCompaniesC2">
+		<linkedin:search-companies sortOrder="RECOMMENDERS">
+			<linkedin:search-parameters>
+				<linkedin:search-parameter key="CURRENT_COMPANY">MuleSoft</linkedin:search-parameter>
+				<linkedin:search-parameter key="TITLE">Engineer</linkedin:search-parameter>
+			</linkedin:search-parameters>
+		</linkedin:search-companies>
+	</flow>
+
+	<flow name="SearchCompaniesC3">
+		<linkedin:search-companies start="10" count="20" sortOrder="RECOMMENDERS">
+			<linkedin:search-parameters>
+				<linkedin:search-parameter key="CURRENT_COMPANY">MuleSoft</linkedin:search-parameter>
+				<linkedin:search-parameter key="TITLE">Engineer</linkedin:search-parameter>
+			</linkedin:search-parameters>
+		</linkedin:search-companies>
+	</flow>
+
+	<flow name="SearchCompaniesC4">
+		<linkedin:search-companies sortOrder="RECOMMENDERS">
+			<linkedin:search-parameters>
+				<linkedin:search-parameter key="CURRENT_COMPANY">MuleSoft</linkedin:search-parameter>
+				<linkedin:search-parameter key="TITLE">Engineer</linkedin:search-parameter>
+			</linkedin:search-parameters>
+			<linkedin:company-fields>
+				<linkedin:company-field>NAME</linkedin:company-field>
+				<linkedin:company-field>UNIVERSAL_NAME</linkedin:company-field>
+			</linkedin:company-fields>
+		</linkedin:search-companies>
+	</flow>
+
+	<flow name="SearchCompaniesC5">
+		<linkedin:search-companies start="10" count="20" sortOrder="RECOMMENDERS">
+			<linkedin:search-parameters>
+				<linkedin:search-parameter key="CURRENT_COMPANY">MuleSoft</linkedin:search-parameter>
+				<linkedin:search-parameter key="TITLE">Engineer</linkedin:search-parameter>
+			</linkedin:search-parameters>
+			<linkedin:company-fields>
+				<linkedin:company-field>NAME</linkedin:company-field>
+				<linkedin:company-field>UNIVERSAL_NAME</linkedin:company-field>
+			</linkedin:company-fields>
+		</linkedin:search-companies>
+	</flow>
+
+	<flow name="SearchCompaniesWithFacetsC1">
+		<linkedin:search-companies-with-facets sortOrder="RECOMMENDERS">
+			<linkedin:search-parameters>
+				<linkedin:search-parameter key="CURRENT_COMPANY">MuleSoft</linkedin:search-parameter>
+				<linkedin:search-parameter key="TITLE">Engineer</linkedin:search-parameter>
+			</linkedin:search-parameters>
+			<linkedin:facets>
+				<linkedin:facet key="INDUSTRY">Software</linkedin:facet>
+				<linkedin:facet key="PAST_COMPANY">MuleSource</linkedin:facet>
+			</linkedin:facets>
+		</linkedin:search-companies-with-facets>
+	</flow>
+
+	<flow name="SearchCompaniesWithFacetsC2">
+		<linkedin:search-companies-with-facets start="10" count="20" sortOrder="RECOMMENDERS">
+			<linkedin:search-parameters>
+				<linkedin:search-parameter key="CURRENT_COMPANY">MuleSoft</linkedin:search-parameter>
+				<linkedin:search-parameter key="TITLE">Engineer</linkedin:search-parameter>
+			</linkedin:search-parameters>
+			<linkedin:facets>
+				<linkedin:facet key="INDUSTRY">Software</linkedin:facet>
+				<linkedin:facet key="PAST_COMPANY">MuleSource</linkedin:facet>
+			</linkedin:facets>
+		</linkedin:search-companies-with-facets>
+	</flow>
+
+	<flow name="SearchCompaniesWithFacetsC3">
+		<linkedin:search-companies-with-facets sortOrder="RECOMMENDERS">
+			<linkedin:search-parameters>
+				<linkedin:search-parameter key="CURRENT_COMPANY">MuleSoft</linkedin:search-parameter>
+				<linkedin:search-parameter key="TITLE">Engineer</linkedin:search-parameter>
+			</linkedin:search-parameters>
+			<linkedin:company-fields>
+				<linkedin:company-field>NAME</linkedin:company-field>
+				<linkedin:company-field>UNIVERSAL_NAME</linkedin:company-field>
+			</linkedin:company-fields>
+			<linkedin:facets>
+				<linkedin:facet key="INDUSTRY">Software</linkedin:facet>
+				<linkedin:facet key="PAST_COMPANY">MuleSource</linkedin:facet>
+			</linkedin:facets>
+		</linkedin:search-companies-with-facets>
+	</flow>
+
+	<flow name="SearchCompaniesWithFacetsC4">
+		<linkedin:search-companies-with-facets start="10" count="20" sortOrder="RECOMMENDERS">
+			<linkedin:search-parameters>
+				<linkedin:search-parameter key="CURRENT_COMPANY">MuleSoft</linkedin:search-parameter>
+				<linkedin:search-parameter key="TITLE">Engineer</linkedin:search-parameter>
+			</linkedin:search-parameters>
+			<linkedin:company-fields>
+				<linkedin:company-field>NAME</linkedin:company-field>
+				<linkedin:company-field>UNIVERSAL_NAME</linkedin:company-field>
+			</linkedin:company-fields>
+			<linkedin:facets>
+				<linkedin:facet key="INDUSTRY">Software</linkedin:facet>
+				<linkedin:facet key="PAST_COMPANY">MuleSource</linkedin:facet>
+			</linkedin:facets>
+		</linkedin:search-companies-with-facets>
+	</flow>
+
+	<flow name="SearchCompaniesWithFacetFieldsC1">
+		<linkedin:search-companies-with-facet-fields
+			sortOrder="RECOMMENDERS">
+			<linkedin:search-parameters>
+				<linkedin:search-parameter key="CURRENT_COMPANY">MuleSoft</linkedin:search-parameter>
+				<linkedin:search-parameter key="TITLE">Engineer</linkedin:search-parameter>
+			</linkedin:search-parameters>
+			<linkedin:company-fields>
+				<linkedin:company-field>NAME</linkedin:company-field>
+				<linkedin:company-field>UNIVERSAL_NAME</linkedin:company-field>
+			</linkedin:company-fields>
+			<linkedin:facet-fields>
+				<linkedin:facet-field>BUCKET_NAME</linkedin:facet-field>
+				<linkedin:facet-field>BUCKET_CODE</linkedin:facet-field>
+			</linkedin:facet-fields>
+		</linkedin:search-companies-with-facet-fields>
+	</flow>
+
+	<flow name="SearchCompaniesWithFacetFieldsC2">
+		<linkedin:search-companies-with-facet-fields sortOrder="RECOMMENDERS">
+			<linkedin:search-parameters>
+				<linkedin:search-parameter key="CURRENT_COMPANY">MuleSoft</linkedin:search-parameter>
+				<linkedin:search-parameter key="TITLE">Engineer</linkedin:search-parameter>
+			</linkedin:search-parameters>
+			<linkedin:company-fields>
+				<linkedin:company-field>NAME</linkedin:company-field>
+				<linkedin:company-field>UNIVERSAL_NAME</linkedin:company-field>
+			</linkedin:company-fields>
+			<linkedin:facet-fields>
+				<linkedin:facet-field>BUCKET_NAME</linkedin:facet-field>
+				<linkedin:facet-field>BUCKET_CODE</linkedin:facet-field>
+			</linkedin:facet-fields>
+			<linkedin:facets>
+				<linkedin:facet key="INDUSTRY">Software</linkedin:facet>
+				<linkedin:facet key="PAST_COMPANY">MuleSource</linkedin:facet>
+			</linkedin:facets>
+		</linkedin:search-companies-with-facet-fields>
+	</flow>
+	<flow name="SearchCompaniesWithFacetFieldsC3">
+		<linkedin:search-companies-with-facet-fields start="10" count="20" sortOrder="RECOMMENDERS">
+			<linkedin:search-parameters>
+				<linkedin:search-parameter key="CURRENT_COMPANY">MuleSoft</linkedin:search-parameter>
+				<linkedin:search-parameter key="TITLE">Engineer</linkedin:search-parameter>
+			</linkedin:search-parameters>
+			<linkedin:company-fields>
+				<linkedin:company-field>NAME</linkedin:company-field>
+				<linkedin:company-field>UNIVERSAL_NAME</linkedin:company-field>
+			</linkedin:company-fields>
+			<linkedin:facet-fields>
+				<linkedin:facet-field>BUCKET_NAME</linkedin:facet-field>
+				<linkedin:facet-field>BUCKET_CODE</linkedin:facet-field>
+			</linkedin:facet-fields>
+		</linkedin:search-companies-with-facet-fields>
+	</flow>
+	<flow name="SearchCompaniesWithFacetFieldsC4">
+		<linkedin:search-companies-with-facet-fields start="10" count="20" sortOrder="RECOMMENDERS">
+			<linkedin:search-parameters>
+				<linkedin:search-parameter key="CURRENT_COMPANY">MuleSoft</linkedin:search-parameter>
+				<linkedin:search-parameter key="TITLE">Engineer</linkedin:search-parameter>
+			</linkedin:search-parameters>
+			<linkedin:company-fields>
+				<linkedin:company-field>NAME</linkedin:company-field>
+				<linkedin:company-field>UNIVERSAL_NAME</linkedin:company-field>
+			</linkedin:company-fields>
+			<linkedin:facet-fields>
+				<linkedin:facet-field>BUCKET_NAME</linkedin:facet-field>
+				<linkedin:facet-field>BUCKET_CODE</linkedin:facet-field>
+			</linkedin:facet-fields>
+			<linkedin:facets>
+				<linkedin:facet key="INDUSTRY">Software</linkedin:facet>
+				<linkedin:facet key="PAST_COMPANY">MuleSource</linkedin:facet>
+			</linkedin:facets>
+		</linkedin:search-companies-with-facet-fields>
+	</flow>
+
+	<flow name="GetJobByIdC1">
+		<linkedin:get-job-by-id id="some-id" />
+	</flow>
+
+	<flow name="GetJobByIdC2">
+		<linkedin:get-job-by-id id="some-id">
+			<linkedin:job-fields>
+				<linkedin:job-field>CUSTOMER_JOB_CODE</linkedin:job-field>
+				<linkedin:job-field>POSTING_TIMESTAMP</linkedin:job-field>
+			</linkedin:job-fields>
+		</linkedin:get-job-by-id>
+	</flow>
+
+	<flow name="GetJobBookmarksC1">
+		<linkedin:get-job-bookmarks />
+	</flow>
+
+	<flow name="GetJobBookmarksC2">
+		<linkedin:get-job-bookmarks>
+			<linkedin:job-fields>
+				<linkedin:job-field>CUSTOMER_JOB_CODE</linkedin:job-field>
+				<linkedin:job-field>POSTING_TIMESTAMP</linkedin:job-field>
+			</linkedin:job-fields>
+		</linkedin:get-job-bookmarks>
+	</flow>
+
+	<flow name="UnbookmarkJobC1">
+		<linkedin:unbookmark-job jobId="some-id" />
+	</flow>
+
+	<flow name="GetJobSuggestionsC1">
+		<linkedin:get-job-suggestions />
+	</flow>
+
+	<flow name="GetJobSuggestionsC2">
+		<linkedin:get-job-suggestions>
+			<linkedin:job-fields>
+				<linkedin:job-field>CUSTOMER_JOB_CODE</linkedin:job-field>
+				<linkedin:job-field>POSTING_TIMESTAMP</linkedin:job-field>
+			</linkedin:job-fields>
+		</linkedin:get-job-suggestions>
+	</flow>
+
+	<flow name="SearchJobsC1">
+		<linkedin:search-jobs />
+	</flow>
+
+	<flow name="SearchJobsC2">
+		<linkedin:search-jobs>
+			<linkedin:search-parameters>
+				<linkedin:search-parameter key="CURRENT_COMPANY">MuleSoft</linkedin:search-parameter>
+				<linkedin:search-parameter key="TITLE">Engineer</linkedin:search-parameter>
+			</linkedin:search-parameters>
+		</linkedin:search-jobs>
+	</flow>
+
+	<flow name="SearchJobsC3">
+		<linkedin:search-jobs start="10" count="20">
+			<linkedin:search-parameters>
+				<linkedin:search-parameter key="CURRENT_COMPANY">MuleSoft</linkedin:search-parameter>
+				<linkedin:search-parameter key="TITLE">Engineer</linkedin:search-parameter>
+			</linkedin:search-parameters>
+		</linkedin:search-jobs>
+	</flow>
+
+	<flow name="SearchJobsC4">
+		<linkedin:search-jobs>
+			<linkedin:search-parameters>
+				<linkedin:search-parameter key="CURRENT_COMPANY">MuleSoft</linkedin:search-parameter>
+				<linkedin:search-parameter key="TITLE">Engineer</linkedin:search-parameter>
+			</linkedin:search-parameters>
+			<linkedin:job-fields>
+				<linkedin:job-field>CUSTOMER_JOB_CODE</linkedin:job-field>
+				<linkedin:job-field>POSTING_TIMESTAMP</linkedin:job-field>
+			</linkedin:job-fields>
+		</linkedin:search-jobs>
+	</flow>
+
+	<flow name="SearchJobsC5">
+		<linkedin:search-jobs start="10" count="20">
+			<linkedin:search-parameters>
+				<linkedin:search-parameter key="CURRENT_COMPANY">MuleSoft</linkedin:search-parameter>
+				<linkedin:search-parameter key="TITLE">Engineer</linkedin:search-parameter>
+			</linkedin:search-parameters>
+			<linkedin:job-fields>
+				<linkedin:job-field>CUSTOMER_JOB_CODE</linkedin:job-field>
+				<linkedin:job-field>POSTING_TIMESTAMP</linkedin:job-field>
+			</linkedin:job-fields>
+		</linkedin:search-jobs>
+	</flow>
+
+	<flow name="SearchJobsWithFacetsC1">
+		<linkedin:search-jobs-with-facets>
+			<linkedin:search-parameters>
+				<linkedin:search-parameter key="CURRENT_COMPANY">MuleSoft</linkedin:search-parameter>
+				<linkedin:search-parameter key="TITLE">Engineer</linkedin:search-parameter>
+			</linkedin:search-parameters>
+			<linkedin:facets>
+				<linkedin:facet key="INDUSTRY">Software</linkedin:facet>
+				<linkedin:facet key="PAST_COMPANY">MuleSource</linkedin:facet>
+			</linkedin:facets>
+		</linkedin:search-jobs-with-facets>
+	</flow>
+
+	<flow name="SearchJobsWithFacetsC2">
+		<linkedin:search-jobs-with-facets
+			start="10" count="20">
+			<linkedin:search-parameters>
+				<linkedin:search-parameter key="CURRENT_COMPANY">MuleSoft</linkedin:search-parameter>
+				<linkedin:search-parameter key="TITLE">Engineer</linkedin:search-parameter>
+			</linkedin:search-parameters>
+			<linkedin:facets>
+				<linkedin:facet key="INDUSTRY">Software</linkedin:facet>
+				<linkedin:facet key="PAST_COMPANY">MuleSource</linkedin:facet>
+			</linkedin:facets>
+		</linkedin:search-jobs-with-facets>
+	</flow>
+
+	<flow name="SearchJobsWithFacetsC3">
+		<linkedin:search-jobs-with-facets>
+			<linkedin:search-parameters>
+				<linkedin:search-parameter key="CURRENT_COMPANY">MuleSoft</linkedin:search-parameter>
+				<linkedin:search-parameter key="TITLE">Engineer</linkedin:search-parameter>
+			</linkedin:search-parameters>
+			<linkedin:job-fields>
+				<linkedin:job-field>CUSTOMER_JOB_CODE</linkedin:job-field>
+				<linkedin:job-field>POSTING_TIMESTAMP</linkedin:job-field>
+			</linkedin:job-fields>
+			<linkedin:facets>
+				<linkedin:facet key="INDUSTRY">Software</linkedin:facet>
+				<linkedin:facet key="PAST_COMPANY">MuleSource</linkedin:facet>
+			</linkedin:facets>
+		</linkedin:search-jobs-with-facets>
+	</flow>
+
+	<flow name="SearchJobsWithFacetsC4">
+		<linkedin:search-jobs-with-facets
+			start="10" count="20">
+			<linkedin:search-parameters>
+				<linkedin:search-parameter key="CURRENT_COMPANY">MuleSoft</linkedin:search-parameter>
+				<linkedin:search-parameter key="TITLE">Engineer</linkedin:search-parameter>
+			</linkedin:search-parameters>
+			<linkedin:job-fields>
+				<linkedin:job-field>CUSTOMER_JOB_CODE</linkedin:job-field>
+				<linkedin:job-field>POSTING_TIMESTAMP</linkedin:job-field>
+			</linkedin:job-fields>
+			<linkedin:facets>
+				<linkedin:facet key="INDUSTRY">Software</linkedin:facet>
+				<linkedin:facet key="PAST_COMPANY">MuleSource</linkedin:facet>
+			</linkedin:facets>
+		</linkedin:search-jobs-with-facets>
+	</flow>
+
+	<flow name="SearchJobsWithFacetFieldsC1">
+		<linkedin:search-jobs-with-facet-fields>
+			<linkedin:search-parameters>
+				<linkedin:search-parameter key="CURRENT_COMPANY">MuleSoft</linkedin:search-parameter>
+				<linkedin:search-parameter key="TITLE">Engineer</linkedin:search-parameter>
+			</linkedin:search-parameters>
+			<linkedin:job-fields>
+				<linkedin:job-field>CUSTOMER_JOB_CODE</linkedin:job-field>
+				<linkedin:job-field>POSTING_TIMESTAMP</linkedin:job-field>
+			</linkedin:job-fields>
+			<linkedin:facet-fields>
+				<linkedin:facet-field>BUCKET_NAME</linkedin:facet-field>
+				<linkedin:facet-field>BUCKET_CODE</linkedin:facet-field>
+			</linkedin:facet-fields>
+		</linkedin:search-jobs-with-facet-fields>
+	</flow>
+
+	<flow name="SearchJobsWithFacetFieldsC2">
+		<linkedin:search-jobs-with-facet-fields>
+			<linkedin:search-parameters>
+				<linkedin:search-parameter key="CURRENT_COMPANY">MuleSoft</linkedin:search-parameter>
+				<linkedin:search-parameter key="TITLE">Engineer</linkedin:search-parameter>
+			</linkedin:search-parameters>
+			<linkedin:job-fields>
+				<linkedin:job-field>CUSTOMER_JOB_CODE</linkedin:job-field>
+				<linkedin:job-field>POSTING_TIMESTAMP</linkedin:job-field>
+			</linkedin:job-fields>
+			<linkedin:facet-fields>
+				<linkedin:facet-field>BUCKET_NAME</linkedin:facet-field>
+				<linkedin:facet-field>BUCKET_CODE</linkedin:facet-field>
+			</linkedin:facet-fields>
+			<linkedin:facets>
+				<linkedin:facet key="INDUSTRY">Software</linkedin:facet>
+				<linkedin:facet key="PAST_COMPANY">MuleSource</linkedin:facet>
+			</linkedin:facets>
+		</linkedin:search-jobs-with-facet-fields>
+	</flow>
+	<flow name="SearchJobsWithFacetFieldsC3">
+		<linkedin:search-jobs-with-facet-fields	start="10" count="20">
+			<linkedin:search-parameters>
+				<linkedin:search-parameter key="CURRENT_COMPANY">MuleSoft</linkedin:search-parameter>
+				<linkedin:search-parameter key="TITLE">Engineer</linkedin:search-parameter>
+			</linkedin:search-parameters>
+			<linkedin:job-fields>
+				<linkedin:job-field>CUSTOMER_JOB_CODE</linkedin:job-field>
+				<linkedin:job-field>POSTING_TIMESTAMP</linkedin:job-field>
+			</linkedin:job-fields>
+			<linkedin:facet-fields>
+				<linkedin:facet-field>BUCKET_NAME</linkedin:facet-field>
+				<linkedin:facet-field>BUCKET_CODE</linkedin:facet-field>
+			</linkedin:facet-fields>
+		</linkedin:search-jobs-with-facet-fields>
+	</flow>
+	<flow name="SearchJobsWithFacetFieldsC4">
+		<linkedin:search-jobs-with-facet-fields	start="10" count="20">
+			<linkedin:search-parameters>
+				<linkedin:search-parameter key="CURRENT_COMPANY">MuleSoft</linkedin:search-parameter>
+				<linkedin:search-parameter key="TITLE">Engineer</linkedin:search-parameter>
+			</linkedin:search-parameters>
+			<linkedin:job-fields>
+				<linkedin:job-field>CUSTOMER_JOB_CODE</linkedin:job-field>
+				<linkedin:job-field>POSTING_TIMESTAMP</linkedin:job-field>
+			</linkedin:job-fields>
+			<linkedin:facet-fields>
+				<linkedin:facet-field>BUCKET_NAME</linkedin:facet-field>
+				<linkedin:facet-field>BUCKET_CODE</linkedin:facet-field>
+			</linkedin:facet-fields>
+			<linkedin:facets>
+				<linkedin:facet key="INDUSTRY">Software</linkedin:facet>
+				<linkedin:facet key="PAST_COMPANY">MuleSource</linkedin:facet>
+			</linkedin:facets>
+		</linkedin:search-jobs-with-facet-fields>
+	</flow>
+</mule>

@@ -1,12 +1,29 @@
-/**
- * Copyright (c) MuleSoft, Inc. All rights reserved. http://www.mulesoft.com
- *
- * The software in this package is published under the terms of the CPAL v1.0
- * license, a copy of which has been included with this distribution in the
- * LICENSE.md file.
+/*
+ * Copyright 2010-2011 Nabeel Mukhtar 
+ * 
+ * Licensed under the Apache License, Version 2.0 (the "License"); 
+ * you may not use this file except in compliance with the License. 
+ * You may obtain a copy of the License at 
+ * 
+ *  http://www.apache.org/licenses/LICENSE-2.0
+ * 
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. 
+ * See the License for the specific language governing permissions and
+ * limitations under the License. 
+ * 
  */
-
 package com.google.code.linkedinapi.client.impl;
+
+import java.util.Date;
+import java.util.List;
+import java.util.Locale;
+import java.util.Map;
+import java.util.Set;
+import java.util.concurrent.Callable;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Future;
 
 import com.google.code.linkedinapi.client.AsyncHandlerLinkedInApiClient;
 import com.google.code.linkedinapi.client.AsyncResponseHandler;
@@ -25,56 +42,49 @@ import com.google.code.linkedinapi.schema.People;
 import com.google.code.linkedinapi.schema.Person;
 import com.google.code.linkedinapi.schema.UpdateComments;
 
-import java.util.Date;
-import java.util.List;
-import java.util.Locale;
-import java.util.Map;
-import java.util.Set;
-import java.util.concurrent.Callable;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Future;
-
 /**
  * @author Nabeel Mukhtar
+ *
  */
 public class AsyncHandlerLinkedInApiClientAdapter implements AsyncHandlerLinkedInApiClient {
 
-    /**
-     * Field description
-     */
+    /** Field description */
     private LinkedInApiClient client;
 
-    /**
-     * Field description
-     */
+    /** Field description */
     private ExecutorService taskExecutor;
 
     /**
      * Constructs ...
      *
+     *
      * @param client
      */
     public AsyncHandlerLinkedInApiClientAdapter(LinkedInApiClient client, ExecutorService taskExecutor) {
-        this.client = client;
+        this.client  = client;
         this.taskExecutor = taskExecutor;
     }
 
     /**
      * Method description
      *
+     *
      * @param task
+     *
      * @return
      */
     @SuppressWarnings("unchecked")
-    protected Future execute(Runnable task) {
+	protected Future execute(Runnable task) {
         return taskExecutor.submit(task);
     }
 
     /**
      * Method description
      *
+     *
      * @param task
      * @param <T>
+     *
      * @return
      */
     protected <T> Future<T> execute(Callable<T> task) {
@@ -93,7 +103,7 @@ public class AsyncHandlerLinkedInApiClientAdapter implements AsyncHandlerLinkedI
             }
         }));
     }
-
+    
     /**
      * {@inheritDoc}
      */
@@ -320,7 +330,7 @@ public class AsyncHandlerLinkedInApiClientAdapter implements AsyncHandlerLinkedI
      */
     @Override
     public void getNetworkUpdates(final Set<NetworkUpdateType> updateTypes, final int start, final int count, final Date startDate,
-                                  final Date endDate, final AsyncResponseHandler<Network> handler) {
+            final Date endDate, final AsyncResponseHandler<Network> handler) {
         handler.setFuture(execute(new Callable<Network>() {
             @Override
             public Network call() throws Exception {
@@ -328,7 +338,7 @@ public class AsyncHandlerLinkedInApiClientAdapter implements AsyncHandlerLinkedI
             }
         }));
     }
-
+    
     /**
      * {@inheritDoc}
      */
@@ -354,7 +364,7 @@ public class AsyncHandlerLinkedInApiClientAdapter implements AsyncHandlerLinkedI
             }
         }));
     }
-
+    
     /**
      * {@inheritDoc}
      */
@@ -367,7 +377,7 @@ public class AsyncHandlerLinkedInApiClientAdapter implements AsyncHandlerLinkedI
             }
         }));
     }
-
+    
     /**
      * {@inheritDoc}
      */
@@ -406,7 +416,7 @@ public class AsyncHandlerLinkedInApiClientAdapter implements AsyncHandlerLinkedI
             }
         }));
     }
-
+    
     /**
      * {@inheritDoc}
      */
@@ -437,7 +447,7 @@ public class AsyncHandlerLinkedInApiClientAdapter implements AsyncHandlerLinkedI
      * {@inheritDoc}
      */
     @SuppressWarnings("unchecked")
-    @Override
+	@Override
     public void postComment(final String networkUpdateId, final String commentText, final AsyncResponseHandler<?> handler) {
         handler.setFuture(execute(new Runnable() {
             @Override
@@ -451,7 +461,7 @@ public class AsyncHandlerLinkedInApiClientAdapter implements AsyncHandlerLinkedI
      * {@inheritDoc}
      */
     @SuppressWarnings("unchecked")
-    @Override
+	@Override
     public void postNetworkUpdate(final String updateText, final AsyncResponseHandler<?> handler) {
         handler.setFuture(execute(new Runnable() {
             @Override
@@ -518,7 +528,7 @@ public class AsyncHandlerLinkedInApiClientAdapter implements AsyncHandlerLinkedI
      */
     @Override
     public void searchPeople(final Map<SearchParameter, String> searchParameters, final int start, final int count,
-                             final SearchSortOrder sortOrder, final AsyncResponseHandler<People> handler) {
+                                       final SearchSortOrder sortOrder, final AsyncResponseHandler<People> handler) {
         handler.setFuture(execute(new Callable<People>() {
             @Override
             public People call() throws Exception {
@@ -531,7 +541,7 @@ public class AsyncHandlerLinkedInApiClientAdapter implements AsyncHandlerLinkedI
      * {@inheritDoc}
      */
     @SuppressWarnings("unchecked")
-    @Override
+	@Override
     public void sendInviteByEmail(final String email, final String firstName, final String lastName, final String subject, final String message, final AsyncResponseHandler<?> handler) {
         handler.setFuture(execute(new Runnable() {
             @Override
@@ -545,7 +555,7 @@ public class AsyncHandlerLinkedInApiClientAdapter implements AsyncHandlerLinkedI
      * {@inheritDoc}
      */
     @SuppressWarnings("unchecked")
-    @Override
+	@Override
     public void sendInviteToPerson(final Person recepient, final String subject, final String message, final AsyncResponseHandler<?> handler) {
         handler.setFuture(execute(new Runnable() {
             @Override
@@ -559,7 +569,7 @@ public class AsyncHandlerLinkedInApiClientAdapter implements AsyncHandlerLinkedI
      * {@inheritDoc}
      */
     @SuppressWarnings("unchecked")
-    @Override
+	@Override
     public void sendInviteById(final String recepientId, final String subject, final String message, final String authHeader, final AsyncResponseHandler<?> handler) {
         handler.setFuture(execute(new Runnable() {
             @Override
@@ -568,12 +578,12 @@ public class AsyncHandlerLinkedInApiClientAdapter implements AsyncHandlerLinkedI
             }
         }));
     }
-
+    
     /**
      * {@inheritDoc}
      */
     @SuppressWarnings("unchecked")
-    @Override
+	@Override
     public void sendMessage(final List<String> recepientIds, final String subject, final String message, final AsyncResponseHandler<?> handler) {
         handler.setFuture(execute(new Runnable() {
             @Override
@@ -587,7 +597,7 @@ public class AsyncHandlerLinkedInApiClientAdapter implements AsyncHandlerLinkedI
      * {@inheritDoc}
      */
     @SuppressWarnings("unchecked")
-    @Override
+	@Override
     public void updateCurrentStatus(final String status, final AsyncResponseHandler<?> handler) {
         handler.setFuture(execute(new Runnable() {
             @Override
@@ -601,7 +611,7 @@ public class AsyncHandlerLinkedInApiClientAdapter implements AsyncHandlerLinkedI
      * {@inheritDoc}
      */
     @SuppressWarnings("unchecked")
-    @Override
+	@Override
     public void deleteCurrentStatus(final AsyncResponseHandler<?> handler) {
         handler.setFuture(execute(new Runnable() {
             @Override
@@ -632,7 +642,7 @@ public class AsyncHandlerLinkedInApiClientAdapter implements AsyncHandlerLinkedI
      */
     @Override
     public void setAccessToken(LinkedInAccessToken accessToken) {
-        client.setAccessToken(accessToken);
+    	client.setAccessToken(accessToken);
     }
 
     /**
@@ -640,16 +650,16 @@ public class AsyncHandlerLinkedInApiClientAdapter implements AsyncHandlerLinkedI
      */
     @Override
     public void setApiConsumer(LinkedInApiConsumer apiConsumer) {
-        client.setApiConsumer(apiConsumer);
+    	client.setApiConsumer(apiConsumer);
     }
-
+    
     /**
      * Sets the request headers.
      *
      * @param requestHeaders the request headers
      */
     public void setRequestHeaders(Map<String, String> requestHeaders) {
-        client.setRequestHeaders(requestHeaders);
+    	client.setRequestHeaders(requestHeaders);
     }
 
     /**
@@ -664,7 +674,7 @@ public class AsyncHandlerLinkedInApiClientAdapter implements AsyncHandlerLinkedI
     /**
      * Adds the request header.
      *
-     * @param headerName  the header name
+     * @param headerName the header name
      * @param headerValue the header value
      */
     public void addRequestHeader(String headerName, String headerValue) {
@@ -680,8 +690,8 @@ public class AsyncHandlerLinkedInApiClientAdapter implements AsyncHandlerLinkedI
         client.removeRequestHeader(headerName);
     }
 
-    @Override
-    public void addLocale(Locale locale) {
-        client.addLocale(locale);
-    }
+	@Override
+	public void addLocale(Locale locale) {
+		client.addLocale(locale);
+	}
 }

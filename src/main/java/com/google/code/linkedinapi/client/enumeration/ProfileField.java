@@ -1,11 +1,19 @@
-/**
- * Copyright (c) MuleSoft, Inc. All rights reserved. http://www.mulesoft.com
- *
- * The software in this package is published under the terms of the CPAL v1.0
- * license, a copy of which has been included with this distribution in the
- * LICENSE.md file.
+/*
+ * Copyright 2010-2011 Nabeel Mukhtar 
+ * 
+ * Licensed under the Apache License, Version 2.0 (the "License"); 
+ * you may not use this file except in compliance with the License. 
+ * You may obtain a copy of the License at 
+ * 
+ *  http://www.apache.org/licenses/LICENSE-2.0
+ * 
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. 
+ * See the License for the specific language governing permissions and
+ * limitations under the License. 
+ * 
  */
-
 package com.google.code.linkedinapi.client.enumeration;
 
 import java.util.HashMap;
@@ -15,9 +23,10 @@ import java.util.Set;
 
 /**
  * @author Nabeel Mukhtar
+ *
  */
 public enum ProfileField implements CompositeEnum<ProfileField> {
-
+	
     /**
      * the member token for this member
      */
@@ -42,14 +51,14 @@ public enum ProfileField implements CompositeEnum<ProfileField> {
      * Generic name of the location of the LinkedIn member, (ex: "San Francisco Bay Area")
      */
     LOCATION("location", null, true),
-
+    
     /**
      * Generic name of the location of the LinkedIn member, (ex: "San Francisco Bay Area")
      */
     LOCATION_NAME("name", LOCATION, true),
 
     LOCATION_COUNTRY("country", LOCATION, true),
-
+    
     /**
      * country code for the LinkedIn member
      */
@@ -69,7 +78,7 @@ public enum ProfileField implements CompositeEnum<ProfileField> {
      * the degree distance of the fetched profile from the member who fetched the profile
      */
     RELATION_TO_VIEWER("relation-to-viewer", null, false),
-
+    
     /**
      * the degree distance of the fetched profile from the member who fetched the profile
      */
@@ -78,8 +87,10 @@ public enum ProfileField implements CompositeEnum<ProfileField> {
     RELATION_TO_VIEWER_RELATED_CONNECTIONS("related-connections", RELATION_TO_VIEWER, false),
     RELATION_TO_VIEWER_RELATED_CONNECTIONS_FIRST_NAME("first-name", RELATION_TO_VIEWER_RELATED_CONNECTIONS, false),
     RELATION_TO_VIEWER_RELATED_CONNECTIONS_LAST_NAME("last-name", RELATION_TO_VIEWER_RELATED_CONNECTIONS, false),
+    RELATION_TO_VIEWER_RELATED_CONNECTIONS_HEADLINE("headline", RELATION_TO_VIEWER_RELATED_CONNECTIONS, false),
+    RELATION_TO_VIEWER_RELATED_CONNECTIONS_PICTURE_URL("picture-url", RELATION_TO_VIEWER_RELATED_CONNECTIONS, false),
     RELATION_TO_VIEWER_RELATED_CONNECTIONS_PUBLIC_PROFILE_URL("public-profile-url", RELATION_TO_VIEWER_RELATED_CONNECTIONS, false),
-
+    
     /**
      * a total attribute will denote the number of connections that link the fetching member to the fetched. Contains brief connection/person objects indicating the connecting first degree members.
      */
@@ -89,7 +100,7 @@ public enum ProfileField implements CompositeEnum<ProfileField> {
      * the member's current status, if set
      */
     CURRENT_STATUS("current-status", null, true),
-
+    
     /**
      * the member's current share, if set
      */
@@ -104,9 +115,9 @@ public enum ProfileField implements CompositeEnum<ProfileField> {
      * an empty collection, indicating the # of connections the member has with a total attribute.
      */
     CONNECTIONS("connections", null, false),
-
+    
     NUM_CONNECTIONS("num-connections", null, true),
-
+    
     NUM_CONNECTIONS_CAPPED("num-connections-capped", null, true),
 
     /**
@@ -132,16 +143,16 @@ public enum ProfileField implements CompositeEnum<ProfileField> {
     /**
      * A short-form text area describing what Honors the member may have
      */
-
+    
     HONORS("honors", null, false),
 
     INTERESTS("interests", null, false),
-
+    
     /**
      * A collection of positions a member has had, the total indicated by a total attribute
      */
     POSITIONS("positions", null, true),
-
+    
     POSITIONS_ID("id", POSITIONS, true),
     POSITIONS_TITLE("title", POSITIONS, true),
     POSITIONS_SUMMARY("summary", POSITIONS, true),
@@ -149,17 +160,18 @@ public enum ProfileField implements CompositeEnum<ProfileField> {
     POSITIONS_END_DATE("end-date", POSITIONS, true),
     POSITIONS_IS_CURRENT("is-current", POSITIONS, true),
     POSITIONS_COMPANY("company", POSITIONS, true),
+    POSITIONS_COMPANY_ID("id", POSITIONS_COMPANY, true),
     POSITIONS_COMPANY_NAME("name", POSITIONS_COMPANY, true),
     POSITIONS_COMPANY_TYPE("type", POSITIONS_COMPANY, true),
     POSITIONS_COMPANY_SIZE("size", POSITIONS_COMPANY, true),
     POSITIONS_COMPANY_INDUSTRY("industry", POSITIONS_COMPANY, true),
     POSITIONS_COMPANY_TICKER("ticker", POSITIONS_COMPANY, true),
-
+    
     /**
      * A collection of publications authored by this member
      */
     PUBLICATIONS("publications", null, true),
-
+    
     PUBLICATIONS_ID("id", PUBLICATIONS, true),
     PUBLICATIONS_TITLE("title", PUBLICATIONS, true),
     PUBLICATIONS_PUBLISHER("publisher", PUBLICATIONS, true),
@@ -176,7 +188,7 @@ public enum ProfileField implements CompositeEnum<ProfileField> {
      * A collection of patents or patent applications held by this member
      */
     PATENTS("patents", null, true),
-
+    
     PATENTS_ID("id", PATENTS, true),
     PATENTS_TITLE("title", PATENTS, true),
     PATENTS_NUMBER("number", PATENTS, true),
@@ -197,7 +209,7 @@ public enum ProfileField implements CompositeEnum<ProfileField> {
      * A collection of languages and the level of the member's proficiency for each
      */
     LANGUAGES("languages", null, true),
-
+    
     LANGUAGES_ID("id", LANGUAGES, true),
     LANGUAGES_LANGUAGE("language", LANGUAGES, true),
     LANGUAGES_LANGUAGE_NAME("name", LANGUAGES_LANGUAGE, true),
@@ -219,12 +231,12 @@ public enum ProfileField implements CompositeEnum<ProfileField> {
     SKILLS_YEARS("years", SKILLS, true),
     SKILLS_YEARS_ID("id", SKILLS_YEARS, true),
     SKILLS_YEARS_NAME("name", SKILLS_YEARS, true),
-
+    
     /**
      * A collection of certifications earned by this member
      */
     CERTIFICATIONS("certifications", null, true),
-
+    
     CERTIFICATIONS_ID("id", CERTIFICATIONS, true),
     CERTIFICATIONS_NAME("name", CERTIFICATIONS, true),
     CERTIFICATIONS_AUTHORITY("authority", CERTIFICATIONS, true),
@@ -232,7 +244,7 @@ public enum ProfileField implements CompositeEnum<ProfileField> {
     CERTIFICATIONS_NUMBER("number", CERTIFICATIONS, true),
     CERTIFICATIONS_START_DATE("start-date", CERTIFICATIONS, true),
     CERTIFICATIONS_END_DATE("end-date", CERTIFICATIONS, true),
-
+    
     /**
      * A collection of education institutions a member has attended, the total indicated by a total attribute
      */
@@ -250,25 +262,25 @@ public enum ProfileField implements CompositeEnum<ProfileField> {
      * A collection of positions a member currently holds, limited to three and indicated by a total attribute
      */
     THREE_CURRENT_POSITIONS("three-current-positions", null, true),
-
+    
     /**
      * A collection of positions a member formerly held, limited to the three most recent and indicated by a total attribute
      */
     THREE_PAST_POSITIONS("three-past-positions", null, true),
-
+    
     NUM_RECOMMENDERS("num-recommenders", null, false),
-
+    
     RECOMMENDATIONS_RECEIVED("recommendations-received", null, true),
-
+    
     RECOMMENDATIONS_RECEIVED_ID("id", RECOMMENDATIONS_RECEIVED, true),
     RECOMMENDATIONS_RECEIVED_RECOMMENDATION_TYPE("recommendation-type", RECOMMENDATIONS_RECEIVED, true),
     RECOMMENDATIONS_RECEIVED_RECOMMENDER("recommender", RECOMMENDATIONS_RECEIVED, true),
-
+    
     /**
      * a collection of phone numbers
      */
     PHONE_NUMBERS("phone-numbers", null, true),
-
+    
     /**
      * a collection of instant messenger accounts
      */
@@ -288,14 +300,14 @@ public enum ProfileField implements CompositeEnum<ProfileField> {
      * address
      */
     MAIN_ADDRESS("main-address", null, true),
-
+    
     /**
      * A collection of URLs the member has chosen to share on their LinkedIn profile
      */
     MEMBER_URL_RESOURCES("member-url-resources", null, true),
 
 //    MEMBER_URL("member-url", null, true),
-
+    
     /**
      * The fully-qualified URL being shared
      */
@@ -305,7 +317,7 @@ public enum ProfileField implements CompositeEnum<ProfileField> {
      * The label given to the URL by the member
      */
     MEMBER_URL_NAME("name", MEMBER_URL_RESOURCES, false),
-
+    
     /**
      * A URL to the profile picture, if the member has associated one with their profile and it is visible to the requestor
      */
@@ -315,71 +327,68 @@ public enum ProfileField implements CompositeEnum<ProfileField> {
      * the URL to the member's authenticated profile on LinkedIn (requires a login to be viewed, unlike public profiles)
      */
     SITE_STANDARD_PROFILE_REQUEST("site-standard-profile-request", null, true),
-
+    
     SITE_STANDARD_PROFILE_REQUEST_URL("url", SITE_STANDARD_PROFILE_REQUEST, true),
-
+    
 
     /**
      * An URL representing the resource you would request for programmatic access to the member's public profile
      */
 //    API_PUBLIC_PROFILE_REQUEST("api-public-profile-request", null, true),
-
+    
 //    API_PUBLIC_PROFILE_REQUEST_URL("url", API_PUBLIC_PROFILE_REQUEST, true),
-
+    
     /**
      * An URL representing the resource you would request for programmatic access to the member's public profile
      */
 //    SITE_PUBLIC_PROFILE_REQUEST("site-public-profile-request", null, true),
-
+    
 //    SITE_PUBLIC_PROFILE_REQUEST_URL("url", SITE_PUBLIC_PROFILE_REQUEST, true),
 
     /**
      * An URL representing the resource you would request for programmatic access to the member's profile
      */
     API_STANDARD_PROFILE_REQUEST("api-standard-profile-request", null, true),
-
+    
     API_STANDARD_PROFILE_REQUEST_URL("url", API_STANDARD_PROFILE_REQUEST, true),
-
+    
     /**
      * A collection of fields that can be re-used as HTTP headers to request an out of network profile programmatically
      */
     API_STANDARD_PROFILE_REQUEST_HEADERS("headers", API_STANDARD_PROFILE_REQUEST, true),
 
     /**
-     * A URL to the member's public profile, if enabled.
+     * 	A URL to the member's public profile, if enabled.
      */
     PUBLIC_PROFILE_URL("public-profile-url", null, true);
-
-
-    public enum Scope {
-        User, Connections, All;
-    }
-
+    
+    
+	public enum Scope {
+		User, Connections, All;
+	}
+    
     /**
      * Field Description.
      */
-    private static final Map<String, ProfileField> stringToEnum = new HashMap<String, ProfileField>();
+	private static final Map<String, ProfileField> stringToEnum = new HashMap<String, ProfileField>();
 
-    static { // Initialize map from constant name to enum constant
-        for (ProfileField op : values()) {
-            stringToEnum.put(op.fieldName(), op);
-        }
-    }
-
-    /**
-     * Field description
-     */
+	static { // Initialize map from constant name to enum constant
+		for (ProfileField op : values()) {
+			stringToEnum.put(op.fieldName(), op);
+		}
+	}
+    
+    /** Field description */
     private final String fieldName;
-
+    
     private final ProfileField parent;
 
-    /**
-     * Field description
-     */
+    /** Field description */
     private final boolean availableForConnections;
-
+    
     /**
      * Constructs ...
+     *
      *
      * @param name
      */
@@ -396,15 +405,16 @@ public enum ProfileField implements CompositeEnum<ProfileField> {
         return this.fieldName;
     }
 
-    /**
-     *
-     */
+    /** 
+	 * 
+	 */
     public boolean isAvailableForConnections() {
         return this.availableForConnections;
     }
-
+    
     /**
      * Method description
+     *
      *
      * @return
      */
@@ -413,28 +423,30 @@ public enum ProfileField implements CompositeEnum<ProfileField> {
         return fieldName();
     }
 
-    /**
-     * @return Returns ProfileField for string, or null if string is invalid
-     */
-    public static FieldEnum fromString(String symbol) {
-        return stringToEnum.get(symbol);
-    }
+	/**
+	 *
+	 * @return Returns ProfileField for string, or null if string is invalid
+	 */
+	public static FieldEnum fromString(String symbol) {
+		return stringToEnum.get(symbol);
+	}
+	
+	/**
+	 *
+	 * @return Returns ProfileFields available for connections.
+	 */
+	public static Set<ProfileField> valuesForConnections() {
+		final Set<ProfileField> valuesForConnections = new HashSet<ProfileField>();
+		for (ProfileField field : values()) {
+			if (field.isAvailableForConnections()) {
+				valuesForConnections.add(field);
+			}
+		}
+		return valuesForConnections;
+	}
 
-    /**
-     * @return Returns ProfileFields available for connections.
-     */
-    public static Set<ProfileField> valuesForConnections() {
-        final Set<ProfileField> valuesForConnections = new HashSet<ProfileField>();
-        for (ProfileField field : values()) {
-            if (field.isAvailableForConnections()) {
-                valuesForConnections.add(field);
-            }
-        }
-        return valuesForConnections;
-    }
-
-    @Override
-    public ProfileField parent() {
-        return parent;
-    }
+	@Override
+	public ProfileField parent() {
+		return parent;
+	}
 }

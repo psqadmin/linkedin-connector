@@ -1,11 +1,19 @@
-/**
- * Copyright (c) MuleSoft, Inc. All rights reserved. http://www.mulesoft.com
- *
- * The software in this package is published under the terms of the CPAL v1.0
- * license, a copy of which has been included with this distribution in the
- * LICENSE.md file.
+/*
+ * Copyright 2010-2011 Nabeel Mukhtar 
+ * 
+ * Licensed under the Apache License, Version 2.0 (the "License"); 
+ * you may not use this file except in compliance with the License. 
+ * You may obtain a copy of the License at 
+ * 
+ *  http://www.apache.org/licenses/LICENSE-2.0
+ * 
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. 
+ * See the License for the specific language governing permissions and
+ * limitations under the License. 
+ * 
  */
-
 package com.google.code.linkedinapi.client.enumeration;
 
 import java.util.HashMap;
@@ -13,6 +21,7 @@ import java.util.Map;
 
 /**
  * @author Nabeel Mukhtar
+ *
  */
 public enum NetworkUpdateType implements FieldEnum {
 
@@ -50,7 +59,7 @@ public enum NetworkUpdateType implements FieldEnum {
      * A connection has updated their extended profile, personal information such as phone number, IM account, and Twitter handle.
      */
     EXTENDED_PROFILE_UPDATE("PRFX"),
-
+    
     /**
      * A connection was recommended
      */
@@ -68,45 +77,43 @@ public enum NetworkUpdateType implements FieldEnum {
 
     /**
      * A connection has updated their status.
-     *
      * @deprecated Use {@link #SHARED_ITEM}
      */
     @Deprecated
-    STATUS_UPDATE("STAT"),
-
+    STATUS_UPDATE("STAT"), 
+    
     /**
      * A connection has shared an update or link.
      */
     SHARED_ITEM("SHAR"),
-
+    
     /**
      * A connection has commented on or liked another update.
      */
     VIRAL_UPDATE("VIRL"),
-
+    
     /**
      * A change to one of the companies the member is following.
      */
     COMPANY_FOLLOW_UPDATE("CMPY");
-
+    
     /**
      * Field Description.
      */
-    private static final Map<String, NetworkUpdateType> stringToEnum = new HashMap<String, NetworkUpdateType>();
+	private static final Map<String, NetworkUpdateType> stringToEnum = new HashMap<String, NetworkUpdateType>();
 
-    static { // Initialize map from constant name to enum constant
-        for (NetworkUpdateType op : values()) {
-            stringToEnum.put(op.fieldName(), op);
-        }
-    }
-
-    /**
-     * Field description
-     */
+	static { // Initialize map from constant name to enum constant
+		for (NetworkUpdateType op : values()) {
+			stringToEnum.put(op.fieldName(), op);
+		}
+	}
+    
+    /** Field description */
     private final String fieldName;
 
     /**
      * Constructs ...
+     *
      *
      * @param name
      */
@@ -124,6 +131,7 @@ public enum NetworkUpdateType implements FieldEnum {
     /**
      * Method description
      *
+     *
      * @return
      */
     @Override
@@ -131,10 +139,11 @@ public enum NetworkUpdateType implements FieldEnum {
         return fieldName();
     }
 
-    /**
-     * @return Returns NetworkUpdateType for string, or null if string is invalid
-     */
-    public static NetworkUpdateType fromString(String symbol) {
-        return stringToEnum.get(symbol);
-    }
+	/**
+	 *
+	 * @return Returns NetworkUpdateType for string, or null if string is invalid
+	 */
+	public static NetworkUpdateType fromString(String symbol) {
+		return stringToEnum.get(symbol);
+	}
 }
